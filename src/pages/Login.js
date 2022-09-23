@@ -67,7 +67,7 @@ function Login(props) {
         </button>
       </form>
     </div>
-   );
+  );
 }
 
 Login.propTypes = {
