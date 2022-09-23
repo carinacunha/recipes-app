@@ -10,7 +10,7 @@ function Login(props) {
 
   useEffect(() => {
     const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    const passwordRegex =/^.{7,}$/;
+    const passwordRegex = /^.{7,}$/;
     const emailTest = emailRegex.test(email);
     const passwordTest = passwordRegex.test(password);
     setIsEmailValid(emailTest);
@@ -34,7 +34,6 @@ function Login(props) {
     localStorage.setItem('drinksToken', 1);
     history.push('/meals');
   };
-
 
   return ( 
     <div>
