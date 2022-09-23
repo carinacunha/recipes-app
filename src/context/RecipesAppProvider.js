@@ -5,7 +5,7 @@ import RecipesAppContext from './RecipesAppContext';
 function RecipesAppProvider({ children }) {
 
   const context = {
-    // ...
+    a: 1,
   };
 
   return (

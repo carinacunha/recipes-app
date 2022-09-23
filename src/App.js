@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RecipesAppProvider from './context/RecipesAppProvider';
 import Login from './pages/Login';
-import Loading from '../pages/Loading';
-import Recipes from '../pages/Recipes';
-import Profile from '../pages/Profile';
-import DoneRecipes from '../pages/DoneRecipes';
-import FavoriteRecipes from '../pages/FavoriteRecipes';
-import RecipeDetails from '../pages/RecipeDetails';
-import RecipeInProgress from '../pages/RecipesInProgress';
-import NotFound from '../pages/NotFound';
+import Loading from './pages/Loading';
+import Recipes from './pages/Recipes';
+import Profile from './pages/Profile';
+import DoneRecipes from './pages/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes';
+import RecipeDetails from './pages/RecipeDetails';
+import RecipeInProgress from './pages/RecipesInProgress';
+import NotFound from './pages/NotFound';
 
 
 function App() {
