@@ -28,6 +28,7 @@ function App() {
           <Route exact path="/drinks/:id/in-progress" component={ RecipeInProgress } />
           <Route exact path="/loading" component={ Loading } />
           <Route component={ NotFound } /> */}
+          
         </Switch>
       </BrowserRouter>
     </RecipesAppProvider>
