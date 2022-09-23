@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 export const useApi = (url) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = useCallback(async (url) => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(url);
       const json = await response.json();
       setData(json);
-    } catch (error) {
-      setError(error);
+    } catch (e) {
+      setError(e);
     } finally {
       setLoading(false);
     }
@@ -32,4 +32,4 @@ export const useStorage = (key, initialState) => {
   }, [state]);
 
   return [state, setState];
-}
+};
