@@ -8,7 +8,7 @@ function RecipesAppProvider({ children }) {
   };
 
   return (
-    <RecipesAppContext.Provider value={ {context} } >
+    <RecipesAppContext.Provider value={ context } >
       {children}
     </RecipesAppContext.Provider>
   );
