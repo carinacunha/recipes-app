@@ -11,7 +11,6 @@ import RecipeDetails from './pages/RecipeDetails';
 import RecipeInProgress from './pages/RecipesInProgress';
 import NotFound from './pages/NotFound';
 
-
 function App() {
   return (
     <RecipesAppProvider>

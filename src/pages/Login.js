@@ -35,7 +35,7 @@ function Login(props) {
     history.push('/meals');
   };
 
-  return ( 
+  return (
     <div>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="email">
