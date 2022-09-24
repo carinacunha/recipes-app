@@ -1,9 +1,12 @@
 import React from 'react';
+import ButtonSearch from '../components/ButtonSearch';
+import Header from '../components/Header';
 
 function Recipes() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <Header />
+      <ButtonSearch />
     </div>
   );
 }
