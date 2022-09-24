@@ -8,12 +8,6 @@ function Header() {
   const pathName = pathname.replace('/', '').replace('-', ' ').split(' ');
   const title = pathName.map((e) => e.charAt(0).toUpperCase() + e.slice(1)).join(' ');
 
-  // if (pathName.includes(' ')) {
-  //   title = pathName.split(' ')
-  //     .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
-  //     .join(' ');
-  // } else { title = pathName.charAt(0).toUpperCase() + pathName.slice(1); }
-
   return (
     <section>
       <input

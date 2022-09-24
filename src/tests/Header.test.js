@@ -41,13 +41,4 @@ describe('Testa o componente', () => {
 
     await (waitFor(() => expect(box).not(toBeInTheDocument())));
   });
-
-  // test('Verifica se os componentes são renderizados na tela', () => {
-  //   const { history } = renderWithRouter(<Header />);
-  //   history.push('/favorite-recipes');
-
-  //   const title = screen.getByRole('heading', { level: 1 });
-
-  //   expect(title).toMatch('Favorite Recipes');
-  // });
 });
