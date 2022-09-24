@@ -49,7 +49,12 @@ export default function Recipes({ history }) {
       <ButtonSearch />
       <section>
         { recipesState.recipes.length > 0 ? recipesState.recipes.map((recipe, i) => (
-          <CardRecipe key={ i } type={ recipesState.type } recipe={ recipe } index={ i } />
+          <CardRecipe
+            key={ i }
+            type={ recipesState.type }
+            recipe={ recipe }
+            index={ i }
+          />
         )) : <p>Carregando...</p> }
       </section>
       <Footer />
