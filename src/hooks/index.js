@@ -5,7 +5,7 @@ export const useApi = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = useCallback(async (url) => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(url);
