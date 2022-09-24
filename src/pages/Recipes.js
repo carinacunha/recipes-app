@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import ButtonSearch from '../components/ButtonSearch';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
 import fetchApi from '../services/fetchApi';
 
@@ -41,11 +44,16 @@ export default function Recipes({ history }) {
   }, []); // eslint-disable-line
 
   return (
-    <section>
-      { recipesState.recipes.length > 0 ? recipesState.recipes.map((recipe, i) => (
-        <CardRecipe key={ i } type={ recipesState.type } recipe={ recipe } index={ i } />
-      )) : <p>Carregando...</p> }
-    </section>
+    <div>
+      <Header />
+      <ButtonSearch />
+      <section>
+        { recipesState.recipes.length > 0 ? recipesState.recipes.map((recipe, i) => (
+          <CardRecipe key={ i } type={ recipesState.type } recipe={ recipe } index={ i } />
+        )) : <p>Carregando...</p> }
+      </section>
+      <Footer />
+    </div>
   );
 }
 
