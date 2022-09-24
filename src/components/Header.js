@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 
@@ -7,15 +7,12 @@ function Header() {
   const { location: { pathname } } = history;
   const pathName = `${pathname.replace('/', '').replace('-', ' ')}`;
   let title = '';
-  console.log(pathName);
 
   if (pathName.includes(' ')) {
     title = pathName.split(' ')
       .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
       .join(' ');
   } else { title = pathName.charAt(0).toUpperCase() + pathName.slice(1); }
-
-  console.log(title);
 
   return (
     <section>
