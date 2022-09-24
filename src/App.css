@@ -66,3 +66,9 @@
     transform: rotate(-10deg);
   }
 }
+
+/* CSS PARA TESTES DO Footer */
+.footer-menu {
+  position: fixed;
+  bottom: 0px;
+}

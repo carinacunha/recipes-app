@@ -3,13 +3,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RecipesAppProvider from './context/RecipesAppProvider';
 import Login from './pages/Login';
 import Loading from './pages/Loading';
-import Recipes from './pages/Recipes';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipeDetails from './pages/RecipeDetails';
-import RecipeInProgress from './pages/RecipesInProgress';
+import RecipeInProgress from './pages/RecipeInProgress';
 import NotFound from './pages/NotFound';
+import Recipes from './pages/Recipes';
 
 function App() {
   return (
