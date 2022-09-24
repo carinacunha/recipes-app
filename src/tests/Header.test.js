@@ -1,8 +1,9 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import Header from '../components/Header';
+import App from '../App';
 
 describe('Testa o componente', () => {
   test('Verifica se os componentes são renderizados na tela', () => {
@@ -18,5 +19,35 @@ describe('Testa o componente', () => {
     userEvent.click(iconPerfil);
     history.push('/profile');
     expect(title).toBeInTheDocument();
+
+    userEvent.click(iconPerfil);
+    history.push('/profile');
+    expect(title).toBeInTheDocument();
   });
+
+  test('Verifica se ao clicar no icone search a caixa aparece', async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/meals');
+
+    const iconSearch = screen.getByTestId('search-top-btn');
+    expect(iconSearch).toBeInTheDocument();
+    const box = screen.getByTestId('search-input');
+
+    userEvent.click(iconSearch);
+
+    await (waitFor(() => expect(box).toBeInTheDocument()));
+
+    userEvent.click(iconSearch);
+
+    await (waitFor(() => expect(box).not(toBeInTheDocument())));
+  });
+
+  // test('Verifica se os componentes são renderizados na tela', () => {
+  //   const { history } = renderWithRouter(<Header />);
+  //   history.push('/favorite-recipes');
+
+  //   const title = screen.getByRole('heading', { level: 1 });
+
+  //   expect(title).toMatch('Favorite Recipes');
+  // });
 });
