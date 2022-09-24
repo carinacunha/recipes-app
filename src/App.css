@@ -69,6 +69,6 @@
 
 /* CSS PARA TESTES DO Footer */
 .footer-menu {
+  bottom: 0;
   position: fixed;
-  bottom: 0px;
 }

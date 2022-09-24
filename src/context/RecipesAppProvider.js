@@ -1,11 +1,9 @@
-// import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RecipesAppContext from './RecipesAppContext';
 
 function RecipesAppProvider({ children }) {
-  // const context = {
-  //   a: 1,
-  // };
+  const context = null;
 
   return (
     <RecipesAppContext.Provider value={ context }>
