@@ -31,6 +31,6 @@ describe('Testa o componente <Login />', () => {
     userEvent.type(emailInput, 'test@test.com');
     userEvent.type(passwordInput, '1234567');
     userEvent.click(loginButton);
-    await waitFor(() => expect(screen.getByText('Recipes')).toBeInTheDocument(), { timeout: 3000 });
+    await waitFor(() => expect(window.location.pathname).toBe('/meals'), { timeout: 3000 });
   });
 });
