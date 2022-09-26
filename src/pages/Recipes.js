@@ -8,6 +8,8 @@ import fetchApi from '../services/fetchApi';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+const LIST_RECIPE_FOODS = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+const LIST_RECIPE_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
 export default function Recipes({ history }) {
   const [recipesState, setRecipesState] = useState({
@@ -15,24 +17,33 @@ export default function Recipes({ history }) {
     type: '',
   });
 
+  const [recipeList, setRecipeList] = useState({
+    list: [],
+    type: '',
+  });
+
   useEffect(() => {
     let URL = '';
+    let URL_LIST = '';
     let currKey = '';
     const ONZE = 11;
+    const QUATRO = 4;
 
     switch (history.location.pathname) {
     case '/drinks': {
       URL = DRINKS_URL;
+      URL_LIST = LIST_RECIPE_DRINKS;
       currKey = 'drinks';
       break;
     }
     default: {
       URL = FOODS_URL;
+      URL_LIST = LIST_RECIPE_FOODS;
       currKey = 'meals';
     }
     }
 
-    const FECTH = async () => {
+    const fetchRecipes = async () => {
       const request = await fetchApi(URL);
       const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
       setRecipesState({
@@ -40,13 +51,34 @@ export default function Recipes({ history }) {
         type: currKey,
       });
     };
-    FECTH();
+    const fetchRecipeList = async () => {
+      const request = await fetchApi(URL_LIST);
+      const onlyFiveFirst = request[currKey].filter((e, i) => i <= QUATRO);
+      setRecipeList({
+        ...recipeList,
+        list: onlyFiveFirst,
+      });
+    };
+
+    fetchRecipes();
+    fetchRecipeList();
   }, []); // eslint-disable-line
 
   return (
     <div>
       <Header />
       <ButtonSearch />
+      <section>
+        { recipeList.list.length > 0 ? recipeList.list.map(({ strCategory }) => (
+          <button
+            key={ strCategory }
+            type="button"
+            data-testid={ `${strCategory}-category-filter` }
+          >
+            {strCategory}
+          </button>
+        )) : null }
+      </section>
       <section>
         { recipesState.recipes.length > 0 ? recipesState.recipes.map((recipe, i) => (
           <CardRecipe
