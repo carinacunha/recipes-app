@@ -5,6 +5,8 @@ import App from '../App';
 
 describe('Testa o componente <Login />', () => {
   const BUTTON = 'login-submit-btn';
+  const EMAIL = 'test@test.com';
+  const PROFILE_BUTTON = 'profile-top-btn';
 
   beforeEach(() => {
     render(<App />);
@@ -14,13 +16,13 @@ describe('Testa o componente <Login />', () => {
     const emailInput = screen.getByTestId('email-input');
     const passwordInput = screen.getByTestId('password-input');
     const loginButton = screen.getByTestId(BUTTON);
-    userEvent.type(emailInput, 'test@test.com');
+    userEvent.type(emailInput, EMAIL);
     userEvent.type(passwordInput, '1234567');
     userEvent.click(loginButton);
-    const profileButton = screen.getByTestId('profile-top-btn');
+    const profileButton = screen.getByTestId(PROFILE_BUTTON);
     userEvent.click(profileButton);
     await waitFor(() => expect(window.location.pathname).toBe('/profile'), { timeout: 3000 });
-    expect(screen.getByTestId('profile-email')).toHaveTextContent('test@test.com');
+    expect(screen.getByTestId('profile-email')).toHaveTextContent(EMAIL);
   });
 
   test('Testa se o botao de logout funciona', async () => {
@@ -33,10 +35,10 @@ describe('Testa o componente <Login />', () => {
     const emailInput = screen.getByTestId('email-input');
     const passwordInput = screen.getByTestId('password-input');
     const loginButton = screen.getByTestId(BUTTON);
-    userEvent.type(emailInput, 'test@test.com');
+    userEvent.type(emailInput, EMAIL);
     userEvent.type(passwordInput, '1234567');
     userEvent.click(loginButton);
-    const profileButton = screen.getByTestId('profile-top-btn');
+    const profileButton = screen.getByTestId(PROFILE_BUTTON);
     userEvent.click(profileButton);
     await waitFor(() => expect(window.location.pathname).toBe('/profile'), { timeout: 3000 });
     const doneRecipesButton = screen.getByTestId('profile-done-btn');
@@ -45,7 +47,7 @@ describe('Testa o componente <Login />', () => {
   });
 
   test('Testa se o botao de receitas favoritas funciona', async () => {
-    const profileButton = screen.getByTestId('profile-top-btn');
+    const profileButton = screen.getByTestId(PROFILE_BUTTON);
     userEvent.click(profileButton);
     await waitFor(() => expect(window.location.pathname).toBe('/profile'), { timeout: 3000 });
     const favoriteRecipes = screen.getByTestId('profile-favorite-btn');
