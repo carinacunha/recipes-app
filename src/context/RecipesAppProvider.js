@@ -1,9 +1,37 @@
-import React from 'react';
+/* eslint-disable react/jsx-no-constructed-context-values */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesAppContext from './RecipesAppContext';
 
 function RecipesAppProvider({ children }) {
-  const context = null;
+  const [searchInputValue, setSearchInputValue] = useState({ Value: '' });
+  const [searchRadio, setSearchRadio] = useState({
+    ingredient: false,
+    name: false,
+    firstLetter: false,
+  });
+
+  const handleInputBar = ({ target: { name, value } }) => {
+    setSearchInputValue(() => (
+      {
+        [name]: value,
+      }
+    ));
+  };
+
+  const handleInputRadio = ({ target: { value } }) => {
+    setSearchRadio(() => (
+      {
+        value: [value].toString(),
+      }
+    ));
+  };
+  const context = {
+    searchInputValue,
+    searchRadio,
+    handleInputBar,
+    handleInputRadio,
+  };
 
   return (
     <RecipesAppContext.Provider value={ context }>

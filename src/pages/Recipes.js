@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
 import fetchApi from '../services/fetchApi';
+import SearchBar from '../components/SearchBar';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -47,6 +48,7 @@ export default function Recipes({ history }) {
     <div>
       <Header />
       <ButtonSearch />
+      <SearchBar />
       <section>
         { recipesState.recipes.length > 0 ? recipesState.recipes.map((recipe, i) => (
           <CardRecipe
