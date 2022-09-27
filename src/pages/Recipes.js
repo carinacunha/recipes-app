@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
 import fetchApi from '../services/fetchApi';
+import SearchBar from '../components/SearchBar';
 import LoadingComponent from '../components/LoadingComponent';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -126,6 +127,7 @@ export default function Recipes() {
     <main>
       <Header />
       <ButtonSearch />
+      <SearchBar />
       { loading ? <LoadingComponent /> : (
         <section>
           <section>

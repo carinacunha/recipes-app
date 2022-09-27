@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import RecipesAppContext from '../context/RecipesAppContext';
 import searchIcon from '../images/searchIcon.svg';
 
 function ButtonSearch() {
   const [barVisible, setBarVisible] = useState(false);
+  const { handleInputBar, searchInputValue } = useContext(RecipesAppContext);
   return (
     <div>
       <input
@@ -15,8 +17,11 @@ function ButtonSearch() {
 
       {barVisible
       && <input
+        name="Value"
         data-testid="search-input"
         type="text"
+        value={ searchInputValue.Value }
+        onChange={ handleInputBar }
         placeholder="digite a receita"
       />}
 
