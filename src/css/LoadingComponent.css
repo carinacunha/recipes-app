@@ -1,0 +1,25 @@
+@keyframes is-rotating {
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.loadingScreen {
+  align-items: center;
+  color: rgb(37, 37, 37);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.loader {
+  animation: is-rotating 1s infinite;
+  border: 6px solid rgba(195, 195, 195, 0.452);
+  border-radius: 100%;
+  border-top-color: rgb(43, 228, 160);
+  height: 50px;
+  margin: 20px;
+  width: 50px;
+}
