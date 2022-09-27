@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ButtonSearch from '../components/ButtonSearch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,7 +11,7 @@ const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const LIST_RECIPE_FOODS = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 const LIST_RECIPE_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
-export default function Recipes({ history }) {
+export default function Recipes() {
   const [recipesState, setRecipesState] = useState({
     recipes: [],
     type: '',
@@ -22,6 +22,8 @@ export default function Recipes({ history }) {
     type: '',
   });
 
+  const { location: { pathname } } = useHistory();
+
   useEffect(() => {
     let URL = '';
     let URL_LIST = '';
@@ -29,7 +31,7 @@ export default function Recipes({ history }) {
     const ONZE = 11;
     const QUATRO = 4;
 
-    switch (history.location.pathname) {
+    switch (pathname) {
     case '/drinks': {
       URL = DRINKS_URL;
       URL_LIST = LIST_RECIPE_DRINKS;
@@ -62,7 +64,7 @@ export default function Recipes({ history }) {
 
     fetchRecipes();
     fetchRecipeList();
-  }, []); // eslint-disable-line
+  }, [pathname]); // eslint-disable-line
 
   return (
     <div>
@@ -93,9 +95,3 @@ export default function Recipes({ history }) {
     </div>
   );
 }
-
-Recipes.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape(),
-  }),
-}.isRequired;
