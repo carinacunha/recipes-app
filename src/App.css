@@ -67,8 +67,78 @@
   }
 }
 
+
 /* CSS PARA TESTES DO Footer */
 .footer-menu {
   bottom: 0;
   position: fixed;
+}
+
+.live__scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.live__scroll .row{
+  display:block;
+}
+.live__scroll .live__scroll--box {
+  display: inline-block;
+  float: none;
+  padding: 15px;
+}
+
+.recomended_img {
+  width: 163px;
+  height: 135px;
+}
+
+.recomended_recipe_title {
+  width: 205px;
+  height: 21px;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #1A1B1C;
+}
+
+.recipe-img {
+  width: 362.01px;
+  height: 161.85px;
+}
+
+.recipe-video {
+  width: 336px;
+  height: 205.09px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  border-radius: 0px;
+}
+
+.recipe-main-title {
+  width: 147px;
+  height: 42px;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.105em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.video-recipe-title {
+  width: 142.8px;
+  height: 21px;
+  left: 23.01px;
+  top: 882px;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #1A1B1C;
 }
