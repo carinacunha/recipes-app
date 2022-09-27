@@ -32,6 +32,11 @@ function Login(props) {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('drinksToken', 1);
+    localStorage.setItem('doneRecipes', JSON.stringify([]));
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      drinks: {},
+      meals: {},
+    }));
     history.push('/meals');
   };
 
