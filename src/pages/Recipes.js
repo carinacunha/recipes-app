@@ -19,6 +19,7 @@ let URL = '';
 
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
+  const [categoryWasClicked, setCategoryWasClicked] = useState('');
   const [recipesState, setRecipesState] = useState({
     recipes: [],
     type: '',
@@ -73,16 +74,30 @@ export default function Recipes() {
     fetchRecipeList();
   }, [pathname]); // eslint-disable-line
 
-  const getByCategory = async (category) => {
+  const getByCategory = async ({ target: { name } }) => {
+    if (name === categoryWasClicked) {
+      setLoading(true);
+      console.log(URL);
+      const request = await fetchApi(URL);
+      const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
+      setRecipesState({
+        recipes: onlyTwelveFirst,
+        type: currKey,
+      });
+
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     let URL_CATEGORY = '';
     switch (pathname) {
     case '/drinks': {
-      URL_CATEGORY = URL_FILTER_DRINKS + category;
+      URL_CATEGORY = URL_FILTER_DRINKS + name;
       break;
     }
     default: {
-      URL_CATEGORY = URL_FILTER_FOODS + category;
+      URL_CATEGORY = URL_FILTER_FOODS + name;
     }
     }
 
@@ -90,6 +105,7 @@ export default function Recipes() {
     const onlyTwelveFirst = data[currKey]?.filter((e, i) => i <= ONZE);
     setRecipesState({ ...recipesState, recipes: onlyTwelveFirst });
     setLoading(false);
+    setCategoryWasClicked(name);
   };
 
   const clearFilters = async () => {
@@ -103,6 +119,7 @@ export default function Recipes() {
     });
 
     setLoading(false);
+    setCategoryWasClicked('');
   };
 
   return (
@@ -114,9 +131,10 @@ export default function Recipes() {
           <section>
             { recipeList.list.length > 0 ? recipeList.list.map(({ strCategory }) => (
               <button
+                name={ strCategory }
                 key={ strCategory }
                 type="button"
-                onClick={ () => getByCategory(strCategory) }
+                onClick={ getByCategory }
                 data-testid={ `${strCategory}-category-filter` }
               >
                 {strCategory}
