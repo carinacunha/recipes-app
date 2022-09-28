@@ -5,32 +5,46 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteButton(props) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { id, recipe } = props;
+  const { id, recipe, type } = props;
+
+  let types = '';
+  if (type === 'meals') {
+    types = 'meal';
+  } else {
+    types = 'drink';
+  }
+
+  const localRecipe = {
+    alcoholicOrNot: recipe.strAlcoholic ? recipe.strAlcoholic : '',
+    category: recipe.strCategory ? recipe.strCategory : '',
+    id: recipe.idMeal ? recipe.idMeal : recipe.idDrink,
+    image: recipe.strMealThumb ? recipe.strMealThumb : recipe.strDrinkThumb,
+    name: recipe.strMeal ? recipe.strMeal : recipe.strDrink,
+    nationality: recipe.strArea ? recipe.strArea : '',
+    type: types,
+  };
 
   const handleClick = () => {
     setIsFavorite(!isFavorite);
-    if (isFavorite === false) {
+    if (!isFavorite) {
       const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
       if (favoriteRecipes) {
-        favoriteRecipes.push(recipe);
-        localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+        const newFavoriteRecipes = [...favoriteRecipes, localRecipe];
+        localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
       } else {
-        localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
+        localStorage.setItem('favoriteRecipes', JSON.stringify([localRecipe]));
       }
     } else {
       const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      if (favoriteRecipes) {
-        const newFavoriteRecipes = favoriteRecipes
-          .filter((favoriteRecipe) => favoriteRecipe.id !== id);
-        localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
-      }
+      const newFavoriteRecipes = favoriteRecipes.filter((item) => item.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
     }
   };
 
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (favoriteRecipes) {
-      const isFavoriteRecipe = favoriteRecipes.some((r) => r.idMeal === id);
+      const isFavoriteRecipe = favoriteRecipes.some((r) => r.id === id);
       setIsFavorite(isFavoriteRecipe);
     }
   }, []);
@@ -40,6 +54,8 @@ function FavoriteButton(props) {
       type="button"
       data-testid="favorite-btn"
       onClick={ handleClick }
+      label="favorite"
+      src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
     >
       <img
         src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
@@ -51,6 +67,15 @@ function FavoriteButton(props) {
 
 FavoriteButton.propTypes = {
   id: PropTypes.string,
+  recipe: PropTypes.shape({
+    alcoholicOrNot: PropTypes.string,
+    strCategory: PropTypes.string,
+    idMeal: PropTypes.string,
+    strMealThumb: PropTypes.string,
+    strMeal: PropTypes.string,
+    strArea: PropTypes.string,
+  }),
+  type: PropTypes.string,
 }.isRequired;
 
 export default FavoriteButton;
