@@ -1,6 +1,7 @@
 const fetchApi = async (url) => {
-  const respose = await fetch(url);
-  const data = await respose.json();
+  const response = await fetch(url);
+  const data = await response.json();
+
   return data;
 };
 
