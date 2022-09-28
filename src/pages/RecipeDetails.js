@@ -38,7 +38,7 @@ function RecipeDetails(props) {
       <RecomendationsCard type={ type } id={ id } />
       <ButtonStart history={ history } id={ id } type={ type } />
       <FavoriteButton />
-      <ShareButton />
+      <ShareButton history={ history } />
     </div>
   );
 }
