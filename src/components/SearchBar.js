@@ -65,6 +65,7 @@ export default function SearchBar() {
     default:
       return URL;
     }
+    setSearchInputValue({ Value: '' });
   };
 
   verifyRadiosMeals();
