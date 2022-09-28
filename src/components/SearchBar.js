@@ -7,11 +7,35 @@ import fetchApi from '../services/fetchApi';
 export default function SearchBar() {
   const {
     handleInputRadio, searchRadio, searchInputValue, searchAPIcall,
-    setSearchAPIcall, setSearchInputValue, setCurrURL,
+    setSearchAPIcall, setCurrURL, setSearchInputValue
   } = useContext(RecipesAppContext);
 
   const { location: { pathname } } = useHistory();
   const { push } = useHistory();
+
+  useEffect(() => {
+    if (pathname === '/meals'
+    && searchAPIcall.meals?.length === 1) {
+      push(`/meals/${searchAPIcall?.meals[0].idMeal}`);
+    }
+    if (pathname === '/drinks'
+    && searchAPIcall.drinks?.length === 1) {
+      push(`/drinks/${searchAPIcall?.drinks[0].idDrink}`);
+    }
+    const handleAlert = async () => {
+      if (pathname === '/meals'
+      && await searchAPIcall?.meals === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+        setCurrURL('');
+      }
+      if (pathname === '/drinks'
+      && await searchAPIcall?.drinks === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+        setCurrURL('');
+      }
+    };
+    handleAlert();
+  }, [searchAPIcall]);
 
   let URL;
 
@@ -22,42 +46,17 @@ export default function SearchBar() {
     if (pathname === '/meals') return 'themealdb';
   };
 
-  useEffect(() => {
-    if (pathname === '/meals'
-    && searchAPIcall.meals?.length === 1) {
-      push(`/meals/${searchAPIcall.meals[0].idMeal}`);
-    }
-    if (pathname === '/drinks'
-    && searchAPIcall.drinks?.length === 1) {
-      push(`/drinks/${searchAPIcall.drinks[0].idDrink}`);
-    }
-    const handleAlert = async () => {
-      if (pathname === '/meals'
-      && await searchAPIcall.meals === null) {
-        global.alert('Sorry, we haven\'t found any recipes for these filters.');
-        setCurrURL('');
-      }
-      if (pathname === '/drinks'
-      && await searchAPIcall.drinks === null) {
-        global.alert('Sorry, we haven\'t found any recipes for these filters.');
-        setCurrURL('');
-      }
-      setSearchInputValue({ Value: '' });
-    };
-    handleAlert();
-  }, [searchAPIcall]);
-
   const verifyRadiosMeals = () => {
     switch (searchRadio.value) {
     case 'ingredient':
-      if (inputValue.length > 0) URL = `https://www.${checkPath()}.com/api/json/v1/1/filter.php?i=${searchInputValue.Value}`;
+      if (inputValue?.length > 0) URL = `https://www.${checkPath()}.com/api/json/v1/1/filter.php?i=${searchInputValue.Value}`;
       break;
     case 'name':
-      if (inputValue.length > 0) URL = `https://www.${checkPath()}.com/api/json/v1/1/search.php?s=${searchInputValue.Value}`;
+      if (inputValue?.length > 0) URL = `https://www.${checkPath()}.com/api/json/v1/1/search.php?s=${searchInputValue.Value}`;
       break;
     case 'first letter':
-      if (inputValue.length === 1) URL = `https://www.${checkPath()}.com/api/json/v1/1/search.php?f=${searchInputValue.Value}`;
-      if (inputValue.length > 1) {
+      if (inputValue?.length === 1) URL = `https://www.${checkPath()}.com/api/json/v1/1/search.php?f=${searchInputValue.Value}`;
+      if (inputValue?.length > 1) {
         setSearchInputValue({ Value: '' });
         return global.alert('Your search must have only 1 (one) character');
       }
@@ -65,7 +64,6 @@ export default function SearchBar() {
     default:
       return URL;
     }
-    setSearchInputValue({ Value: '' });
   };
 
   verifyRadiosMeals();
