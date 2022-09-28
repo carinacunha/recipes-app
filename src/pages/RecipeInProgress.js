@@ -34,7 +34,7 @@ function RecipeInProgress(props) {
       <IngredientsCheckboxContainer recipe={ recipe } />
       <InstructionsContainer recipe={ recipe } />
       <FinishRecipeButton />
-      <FavoriteButton />
+      <FavoriteButton recipe={ recipe } id={ id } type={ type } />
       <ShareButton />
     </div>
   );
