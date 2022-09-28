@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
+const copy = require('clipboard-copy');
+
 function ShareButton(props) {
   const [ulrCopy, setUrlCopy] = useState(false);
 
   const copyToClip = () => {
-    const copy = require('clipboard-copy');
-    const pathHome = 'http://localhost:3000';
+    const pathHome = window.location.href.split('/')[2];
     const { history } = props;
     const { pathname } = history.location;
-    const linkToCopy = pathHome + pathname;
-    console.log(linkToCopy);
+    const linkToCopy = `http://${pathHome}${pathname}`;
     copy(linkToCopy);
     setUrlCopy(true);
   };

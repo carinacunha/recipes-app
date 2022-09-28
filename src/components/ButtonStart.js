@@ -18,7 +18,6 @@ function ButtonStart(props) {
   }
 
   const changeRoute = () => {
-    // const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     history.push(`/${type}/${id}/in-progress`);
   };
   return (
