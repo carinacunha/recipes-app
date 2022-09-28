@@ -37,6 +37,7 @@ function Login(props) {
       drinks: {},
       meals: {},
     }));
+    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     history.push('/meals');
   };
 

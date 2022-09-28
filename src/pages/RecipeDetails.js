@@ -36,9 +36,9 @@ function RecipeDetails(props) {
       <InstructionsContainer recipe={ recipe } />
       {type === 'meals' ? <VideoContainer recipe={ recipe } /> : null}
       <RecomendationsCard type={ type } id={ id } />
-      <ButtonStart history={ history } id={ id } type={ type } />
-      <FavoriteButton />
-      <ShareButton />
+      <ButtonStart history={ history } id={ id } type={ type } recipe={ recipe } />
+      <FavoriteButton recipe={ recipe } id={ id } type={ type } />
+      <ShareButton history={ history } />
     </div>
   );
 }
