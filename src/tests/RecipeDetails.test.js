@@ -5,6 +5,18 @@ import renderWithRouter from '../helpers/renderWithRouter';
 import { mockFetchMeal } from './mocks/mockFetchRecipes';
 import App from '../App';
 
+const URL = '/meals/52977';
+const RECIPE_PHOTO = 'recipe-photo';
+const FAVORITE_BUTTON = 'favorite-btn';
+const START_BUTTON = 'start-recipe-btn';
+const BLACK_HEART = 'blackHeartIcon.svg';
+
+const expectPhoto = async () => {
+  await waitFor(() => expect(
+    screen.getByTestId(RECIPE_PHOTO),
+  ).toBeInTheDocument(), { timeout: 5000 });
+};
+
 describe('Testa o componente <RecipeDetails />', () => {
   beforeEach(() => {
     global.fetch = jest.fn(() => Promise.resolve({
@@ -12,30 +24,30 @@ describe('Testa o componente <RecipeDetails />', () => {
     }));
   });
   test('Testa se a receita com meal e renderizada corretamente', async () => {
-    renderWithRouter(<App />, { initialEntries: ['/meals/52977'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    await expectPhoto();
     expect(screen.getByTestId('recipe-title')).toBeInTheDocument();
     expect(screen.getByTestId('share-btn')).toBeInTheDocument();
-    expect(screen.getByTestId('favorite-btn')).toBeInTheDocument();
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toBeInTheDocument();
     expect(screen.getByTestId('recipe-category')).toBeInTheDocument();
     expect(screen.getByTestId('0-ingredient-name-and-measure')).toBeInTheDocument();
     expect(screen.getByTestId('instructions')).toBeInTheDocument();
     expect(screen.getByTestId('video')).toBeInTheDocument();
     expect(screen.getByTestId('0-recommendation-card')).toBeInTheDocument();
-    expect(screen.getByTestId('start-recipe-btn')).toBeInTheDocument();
+    expect(screen.getByTestId(START_BUTTON)).toBeInTheDocument();
   });
 
   test('testa se com drinks renderiza corretamente', async () => {
     renderWithRouter(<App />, { initialEntries: ['/drinks/15997'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
+    await expectPhoto();
     expect(screen.getByTestId('recipe-title')).toBeInTheDocument();
     expect(screen.getByTestId('share-btn')).toBeInTheDocument();
-    expect(screen.getByTestId('favorite-btn')).toBeInTheDocument();
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toBeInTheDocument();
     expect(screen.getByTestId('recipe-category')).toBeInTheDocument();
     expect(screen.getByTestId('0-ingredient-name-and-measure')).toBeInTheDocument();
     expect(screen.getByTestId('instructions')).toBeInTheDocument();
     expect(screen.getByTestId('0-recommendation-card')).toBeInTheDocument();
-    expect(screen.getByTestId('start-recipe-btn')).toBeInTheDocument();
+    expect(screen.getByTestId(START_BUTTON)).toBeInTheDocument();
   });
 
   test('Testa se o botao de favoritos ja vem favoritado e se pode favoritar', async () => {
@@ -48,22 +60,22 @@ describe('Testa o componente <RecipeDetails />', () => {
       nationality: 'Turkish',
       type: 'meal',
     }]));
-    renderWithRouter(<App />, { initialEntries: ['/meals/52977'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
-    expect(screen.getByTestId('favorite-btn')).toHaveAttribute('src', 'blackHeartIcon.svg');
-    userEvent.click(screen.getByTestId('favorite-btn'));
-    expect(screen.getByTestId('favorite-btn')).toHaveAttribute('src', 'whiteHeartIcon.svg');
-    userEvent.click(screen.getByTestId('favorite-btn'));
-    expect(screen.getByTestId('favorite-btn')).toHaveAttribute('src', 'blackHeartIcon.svg');
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    await expectPhoto();
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toHaveAttribute('src', BLACK_HEART);
+    userEvent.click(screen.getByTestId(FAVORITE_BUTTON));
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toHaveAttribute('src', 'whiteHeartIcon.svg');
+    userEvent.click(screen.getByTestId(FAVORITE_BUTTON));
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toHaveAttribute('src', BLACK_HEART);
   });
 
   test('testa se pode favoritar sem nada no localStorage', async () => {
     localStorage.clear();
-    renderWithRouter(<App />, { initialEntries: ['/meals/52977'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
-    expect(screen.getByTestId('favorite-btn')).toHaveAttribute('src', 'whiteHeartIcon.svg');
-    userEvent.click(screen.getByTestId('favorite-btn'));
-    expect(screen.getByTestId('favorite-btn')).toHaveAttribute('src', 'blackHeartIcon.svg');
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    await expectPhoto();
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toHaveAttribute('src', 'whiteHeartIcon.svg');
+    userEvent.click(screen.getByTestId(FAVORITE_BUTTON));
+    expect(screen.getByTestId(FAVORITE_BUTTON)).toHaveAttribute('src', BLACK_HEART);
   });
 
   test('testa se o botao nao apareca caso a receita ja esteja feita', async () => {
@@ -78,9 +90,9 @@ describe('Testa o componente <RecipeDetails />', () => {
       doneDate: '23/06/2020',
       tags: ['Soup'],
     }]));
-    renderWithRouter(<App />, { initialEntries: ['/meals/52977'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
-    expect(screen.queryByTestId('start-recipe-btn')).not.toBeInTheDocument();
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    await expectPhoto();
+    expect(screen.queryByTestId(START_BUTTON)).not.toBeInTheDocument();
   });
 
   test('testa se, caso a receita esteja em progresso, o botao apareca', async () => {
@@ -90,15 +102,15 @@ describe('Testa o componente <RecipeDetails />', () => {
         52977: ['Corba'],
       },
     }));
-    renderWithRouter(<App />, { initialEntries: ['/meals/52977'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
-    expect(screen.getByTestId('start-recipe-btn')).toHaveTextContent('Continue Recipe');
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    await expectPhoto();
+    expect(screen.getByTestId(START_BUTTON)).toHaveTextContent('Continue Recipe');
   });
 
   test('testa se o botao de Iniciar receita funciona', async () => {
-    const { history } = renderWithRouter(<App />, { initialEntries: ['/meals/52977'] });
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
-    userEvent.click(screen.getByTestId('start-recipe-btn'));
+    const { history } = renderWithRouter(<App />, { initialEntries: [URL] });
+    await expectPhoto();
+    userEvent.click(screen.getByTestId(START_BUTTON));
     await waitFor(() => expect(history.location.pathname).toBe('/meals/52977/in-progress'), { timeout: 3000 });
   });
 
@@ -109,7 +121,7 @@ describe('Testa o componente <RecipeDetails />', () => {
       writeText: jest.fn(),
     };
     global.navigator.clipboard = mockClipboard;
-    await waitFor(() => expect(screen.getByTestId('recipe-photo')).toBeInTheDocument(), { timeout: 5000 });
+    await expectPhoto();
     userEvent.click(screen.getByTestId('share-btn'));
     expect(navigator.clipboard.writeText).toBeCalledTimes(1);
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
