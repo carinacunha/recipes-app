@@ -25,15 +25,14 @@ function IngredientsCheckboxContainer(props) {
 
   return (
     renderIngredients.length > 0 ? renderIngredients.map((ingredient, i) => (
-      <li key={ i }>
-        <label
-          htmlFor={ ingredient }
-          data-testid={ `data-testid=${i}-ingredient-step` }
-        >
-          <input type="checkbox" id={ ingredient } />
-          {ingredient}
-        </label>
-      </li>
+      <label
+        key={ i }
+        htmlFor={ ingredient }
+        data-testid={ `data-testid=${i}-ingredient-step` }
+      >
+        <input type="checkbox" id={ ingredient } />
+        {ingredient}
+      </label>
     )) : <p>Carregando...</p>
   );
 }

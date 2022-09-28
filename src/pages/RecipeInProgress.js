@@ -31,7 +31,7 @@ function RecipeInProgress(props) {
   return (
     <div>
       <HeaderRecipe type={ type } recipe={ recipe } />
-      <IngredientsCheckboxContainer recipe={ recipe } />
+      <IngredientsCheckboxContainer recipe={ recipe } type={ type } id={ id } />
       <InstructionsContainer recipe={ recipe } />
       <FinishRecipeButton />
       <FavoriteButton recipe={ recipe } id={ id } type={ type } />
