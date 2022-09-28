@@ -28,6 +28,8 @@ function RecipeInProgress(props) {
     fetchRecipe();
   }, []);
 
+  const { history } = props;
+
   return (
     <div>
       <HeaderRecipe type={ type } recipe={ recipe } />
@@ -35,7 +37,7 @@ function RecipeInProgress(props) {
       <InstructionsContainer recipe={ recipe } />
       <FinishRecipeButton />
       <FavoriteButton recipe={ recipe } id={ id } type={ type } />
-      <ShareButton />
+      <ShareButton history={ history } />
     </div>
   );
 }
