@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 import RecipesAppContext from './RecipesAppContext';
 
 function RecipesAppProvider({ children }) {
+  const [searchAPIcall, setSearchAPIcall] = useState([]);
+  const [currURL, setCurrURL] = useState('');
   const [searchInputValue, setSearchInputValue] = useState({ Value: '' });
-  const [searchRadio, setSearchRadio] = useState({
-    ingredient: false,
-    name: false,
-    firstLetter: false,
-  });
+  const [searchRadio, setSearchRadio] = useState({ Value: '' });
 
   const handleInputBar = ({ target: { name, value } }) => {
     setSearchInputValue(() => (
@@ -29,8 +27,13 @@ function RecipesAppProvider({ children }) {
   const context = {
     searchInputValue,
     searchRadio,
+    searchAPIcall,
+    currURL,
     handleInputBar,
     handleInputRadio,
+    setSearchAPIcall,
+    setSearchInputValue,
+    setCurrURL,
   };
 
   return (
