@@ -5,6 +5,7 @@ import RecipesAppContext from './RecipesAppContext';
 
 function RecipesAppProvider({ children }) {
   const [searchAPIcall, setSearchAPIcall] = useState([]);
+  const [currURL, setCurrURL] = useState('');
   const [searchInputValue, setSearchInputValue] = useState({ Value: '' });
   const [searchRadio, setSearchRadio] = useState({ Value: '' });
 
@@ -31,6 +32,8 @@ function RecipesAppProvider({ children }) {
     setSearchAPIcall,
     searchAPIcall,
     setSearchInputValue,
+    currURL,
+    setCurrURL,
   };
 
   return (

@@ -8,6 +8,7 @@ export default function SearchBar() {
   const {
     handleInputRadio, searchRadio, searchInputValue, searchAPIcall,
     setSearchAPIcall, setSearchInputValue,
+    setCurrURL,
   } = useContext(RecipesAppContext);
 
   const { location: { pathname } } = useHistory();
@@ -56,8 +57,6 @@ export default function SearchBar() {
   verifyRadiosMeals();
 
   const handleAlert = () => {
-    console.log(searchAPIcall.meals);
-    console.log(searchAPIcall.drinks);
     if ((searchAPIcall.meals === null || searchAPIcall.length === 0)
     && pathname === '/meals') {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
@@ -67,11 +66,6 @@ export default function SearchBar() {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     setSearchInputValue({ Value: '' });
-  };
-
-  const handleAPIcall = async () => {
-    const request = await fetchApi(URL);
-    setSearchAPIcall(request);
   };
 
   return (
@@ -104,8 +98,8 @@ export default function SearchBar() {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => {
-            handleAPIcall(); handleAlert();
+          onClick={ async () => {
+            setSearchAPIcall(await fetchApi(URL)); setCurrURL(URL); handleAlert();
           } }
         >
           search
