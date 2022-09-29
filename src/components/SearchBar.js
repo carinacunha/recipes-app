@@ -7,11 +7,16 @@ import fetchApi from '../services/fetchApi';
 export default function SearchBar() {
   const {
     handleInputRadio, searchRadio, searchInputValue, searchAPIcall,
-    setSearchAPIcall, setCurrURL, setSearchInputValue
+    setSearchAPIcall, setCurrURL, setSearchInputValue,
   } = useContext(RecipesAppContext);
 
   const { location: { pathname } } = useHistory();
   const { push } = useHistory();
+
+  const path = () => {
+    if (pathname === '/meals') return 'meals';
+    if (pathname === '/drinks') return 'drinks';
+  };
 
   useEffect(() => {
     if (pathname === '/meals'
@@ -22,19 +27,11 @@ export default function SearchBar() {
     && searchAPIcall.drinks?.length === 1) {
       push(`/drinks/${searchAPIcall?.drinks[0].idDrink}`);
     }
-    const handleAlert = async () => {
-      if (pathname === '/meals'
-      && await searchAPIcall?.meals === null) {
-        global.alert('Sorry, we haven\'t found any recipes for these filters.');
-        setCurrURL('');
-      }
-      if (pathname === '/drinks'
-      && await searchAPIcall?.drinks === null) {
-        global.alert('Sorry, we haven\'t found any recipes for these filters.');
-        setCurrURL('');
-      }
-    };
-    handleAlert();
+    if (searchAPIcall?.[path()] === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      setCurrURL('');
+      setSearchInputValue({ Value: '' });
+    }
   }, [searchAPIcall]);
 
   let URL;
