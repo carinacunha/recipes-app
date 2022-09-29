@@ -1,4 +1,4 @@
-export const mockFetchFoodsList = {
+const mockFetchRecipesList = {
   meals: [
     {
       strCategory: 'Beef',
@@ -43,9 +43,6 @@ export const mockFetchFoodsList = {
       strCategory: 'Vegetarian',
     },
   ],
-};
-
-export const mockFetchDrinksList = {
   drinks: [
     {
       strCategory: 'Ordinary Drink',
@@ -82,3 +79,5 @@ export const mockFetchDrinksList = {
     },
   ],
 };
+
+export default mockFetchRecipesList;

@@ -82,7 +82,6 @@ export default function Recipes() {
   const getByCategory = async ({ target: { name } }) => {
     if (name === categoryWasClicked) {
       setLoading(true);
-      console.log(URL);
       const request = await fetchApi(URL);
       const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
       setRecipesState({
