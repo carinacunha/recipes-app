@@ -27,10 +27,11 @@ function RecipesAppProvider({ children }) {
   const context = {
     searchInputValue,
     searchRadio,
+    searchAPIcall,
+    currURL,
     handleInputBar,
     handleInputRadio,
     setSearchAPIcall,
-    searchAPIcall,
     setSearchInputValue,
     currURL,
     setCurrURL,
