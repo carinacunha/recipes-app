@@ -1,103 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
-import shareIcon from '../images/shareIcon.svg';
+import MealCard from '../components/MealCard';
 
-const done = [{
-  id: 0,
-  type: 'meal',
-  nationality: 'x',
-  category: 'Italian - Vegetarian',
-  alcoholicOrNot: 'no-alcoholic',
-  name: 'Spicy Arrabiata Penne',
-  image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-  doneDate: '23/06/2020',
-  tags: ['Curry'],
-},
-{
-  id: 0,
-  type: 'meal',
-  nationality: 'x',
-  category: 'Italian - Vegetarian',
-  alcoholicOrNot: 'no-alcoholic',
-  name: 'Spicy Arrabiata Penne',
-  image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-  doneDate: '23/06/2020',
-  tags: ['Pasta'],
-},
+const done = [
+  {
+    id: '52771',
+    type: 'meal',
+    nationality: 'Italian',
+    category: 'Vegetarian',
+    alcoholicOrNot: '',
+    name: 'Spicy Arrabiata Penne',
+    image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+    doneDate: '23/06/2020',
+    tags: ['Pasta', 'Curry'],
+  },
+  {
+    id: '178319',
+    type: 'drink',
+    nationality: '',
+    category: 'Cocktail',
+    alcoholicOrNot: 'Alcoholic',
+    name: 'Aquamarine',
+    image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+    doneDate: '23/06/2020',
+    tags: [],
+  },
 ];
 
 function DoneRecipes() {
+  const [doneRecipes, setDoneRecipes] = useState(done);
+
+  const filterByType = ({ target }) => {
+    console.log(target.name);
+    if (target.name === 'meal') {
+      const filterMeals = done.filter((elem) => elem.type === target.name);
+      setDoneRecipes(filterMeals);
+      return;
+    }
+    if (target.name === 'drink') {
+      const filterDrinks = done.filter((elem) => elem.type === target.name);
+      setDoneRecipes(filterDrinks);
+      return;
+    } setDoneRecipes(done);
+  };
+  console.log(doneRecipes);
   return (
     <div>
       <Header />
       <button
         data-testid="filter-by-all-btn"
+        name="all"
         type="button"
+        onClick={ filterByType }
       >
         All
       </button>
 
       <button
         data-testid="filter-by-meal-btn"
+        name="meal"
         type="button"
+        onClick={ filterByType }
       >
         Meals
       </button>
 
       <button
         data-testid="filter-by-drink-btn"
+        name="drink"
         type="button"
+        onClick={ filterByType }
       >
         Drinks
       </button>
 
       {
-        done.map((recipe, index) => (
-          <div key={ index }>
-            <img
-              width="270px"
-              data-testid={ `${index}-horizontal-image` }
-              src={ recipe.image }
-              alt="imagem not found"
-            />
-            <h3
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              { recipe.category }
-            </h3>
-            <h3
-              data-testid={ `${index}-horizontal-name` }
-            >
-              { recipe.name }
-            </h3>
-            <h3
-              data-testid={ `${index}-horizontal-done-date` }
-            >
-              { recipe.doneDate }
-            </h3>
-            <button
-              type="button"
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareIcon }
-            >
-              <img src={ shareIcon } alt="Compartilhar" />
-            </button>
-            <section>
-              {
-                recipe.tags.map((tag, i) => (
-                  <p
-                    key={ i }
-                    data-testid={ `${i}-${tag}-horizontal-tag` }
-                  >
-                    { tag }
-                  </p>
-
-                ))
-              }
-            </section>
-
-          </div>
-        ))
+        doneRecipes.map((recipe, index) => (
+          <MealCard recipe={ recipe } key={ index } index={ index } />))
       }
     </div>
   );
