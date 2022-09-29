@@ -1,26 +1,27 @@
 import React from 'react';
 import Header from '../components/Header';
+import shareIcon from '../images/shareIcon.svg';
 
 const done = [{
   id: 0,
   type: 'meal',
   nationality: 'x',
-  category: 'beef',
+  category: 'Italian - Vegetarian',
   alcoholicOrNot: 'no-alcoholic',
-  name: 'frango',
-  image: 'https://i0.wp.com/omeudiadia.com.br/wp-content/uploads/2022/03/ain.jpg?w=588&ssl=1',
-  doneDate: '12',
+  name: 'Spicy Arrabiata Penne',
+  image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+  doneDate: '23/06/2020',
   tags: ['Curry'],
 },
 {
   id: 0,
   type: 'meal',
   nationality: 'x',
-  category: 'beef',
+  category: 'Italian - Vegetarian',
   alcoholicOrNot: 'no-alcoholic',
-  name: 'frango',
-  image: 'https://i0.wp.com/omeudiadia.com.br/wp-content/uploads/2022/03/oculos.jpg?w=736&ssl=1',
-  doneDate: '12',
+  name: 'Spicy Arrabiata Penne',
+  image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+  doneDate: '23/06/2020',
   tags: ['Pasta'],
 },
 ];
@@ -77,8 +78,9 @@ function DoneRecipes() {
             <button
               type="button"
               data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
             >
-              Compartilhar
+              <img src={ shareIcon } alt="Compartilhar" />
             </button>
             <section>
               {
