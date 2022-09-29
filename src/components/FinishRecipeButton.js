@@ -22,7 +22,7 @@ function FinishRecipeButton(props) {
   const handleClick = () => {
     const toLocal = {
       alcoholicOrNot: recipe.strAlcoholic ? recipe.strAlcoholic : '',
-      category: recipe.strCategory ? recipe.strCategory : '',
+      category: recipe.strCategory,
       id,
       image: recipe.strMealThumb ? recipe.strMealThumb : recipe.strDrinkThumb,
       name: recipe.strMeal ? recipe.strMeal : recipe.strDrink,

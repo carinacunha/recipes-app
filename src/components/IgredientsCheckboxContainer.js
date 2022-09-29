@@ -42,6 +42,8 @@ function IngredientsCheckboxContainer(props) {
       if (inType) {
         const inId = inType[id];
         if (inId) setUsedIngredients(inId);
+      } else {
+        setUsedIngredients([]);
       }
     }
   }, [recipe]);

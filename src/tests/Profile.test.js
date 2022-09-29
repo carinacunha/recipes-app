@@ -90,4 +90,10 @@ describe('Testa o componente <Login />', () => {
 
     await waitFor(() => expect(history.location.pathname).toBe('/favorite-recipes'));
   });
+
+  test('Testa se caso nao existir user volta pro login', async () => {
+    localStorage.clear();
+    const { history } = renderWithRouter(<App />, { initialEntries: ['/profile'] });
+    await waitFor(() => expect(history.location.pathname).toBe('/'));
+  });
 });

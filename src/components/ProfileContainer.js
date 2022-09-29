@@ -8,6 +8,9 @@ function ProfileContainer(props) {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setEmail(user.email);
+    } else {
+      const { history } = props;
+      history.push('/');
     }
   }, []);
 
