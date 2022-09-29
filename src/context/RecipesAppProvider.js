@@ -33,7 +33,6 @@ function RecipesAppProvider({ children }) {
     handleInputRadio,
     setSearchAPIcall,
     setSearchInputValue,
-    currURL,
     setCurrURL,
   };
 
