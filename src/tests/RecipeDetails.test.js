@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
-import { mockFetchMeal } from './mocks/mockFetchRecipes';
+import { mockFetchRecipes } from './mocks/mockFetchRecipes';
 import App from '../App';
 
 const URL = '/meals/52977';
@@ -20,7 +20,7 @@ const expectPhoto = async () => {
 describe('Testa o componente <RecipeDetails />', () => {
   beforeEach(() => {
     global.fetch = jest.fn(() => Promise.resolve({
-      json: () => Promise.resolve(mockFetchMeal),
+      json: () => Promise.resolve(mockFetchRecipes),
     }));
   });
   test('Testa se a receita com meal e renderizada corretamente', async () => {

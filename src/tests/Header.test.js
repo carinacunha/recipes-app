@@ -31,14 +31,12 @@ describe('Testa o componente', () => {
 
     const iconSearch = screen.getByTestId('search-top-btn');
     expect(iconSearch).toBeInTheDocument();
+    userEvent.click(iconSearch);
+
     const box = screen.getByTestId('search-input');
+    await waitFor(() => expect(box).toBeInTheDocument());
 
     userEvent.click(iconSearch);
-
-    await (waitFor(() => expect(box).toBeInTheDocument()));
-
-    userEvent.click(iconSearch);
-
-    await (waitFor(() => expect(box).not(toBeInTheDocument())));
+    await waitFor(() => expect(box).not.toBeInTheDocument());
   });
 });
