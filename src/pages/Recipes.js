@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ButtonSearch from '../components/ButtonSearch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
 import fetchApi from '../services/fetchApi';
-import SearchBar from '../components/SearchBar';
 import LoadingComponent from '../components/LoadingComponent';
+import RecipesAppContext from '../context/RecipesAppContext';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -21,6 +21,7 @@ let URL = '';
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
   const [categoryWasClicked, setCategoryWasClicked] = useState('');
+  const { currURL } = useContext(RecipesAppContext);
   const [recipesState, setRecipesState] = useState({
     recipes: [],
     type: '',
@@ -52,6 +53,9 @@ export default function Recipes() {
       currKey = 'meals';
     }
     }
+    if (currURL.length > 0) {
+      URL = currURL;
+    }
 
     const fetchRecipes = async () => {
       const request = await fetchApi(URL);
@@ -73,12 +77,11 @@ export default function Recipes() {
 
     fetchRecipes();
     fetchRecipeList();
-  }, [pathname]); // eslint-disable-line
+  }, [pathname, currURL]); // eslint-disable-line
 
   const getByCategory = async ({ target: { name } }) => {
     if (name === categoryWasClicked) {
       setLoading(true);
-      console.log(URL);
       const request = await fetchApi(URL);
       const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
       setRecipesState({
@@ -127,7 +130,6 @@ export default function Recipes() {
     <main>
       <Header />
       <ButtonSearch />
-      <SearchBar />
       { loading ? <LoadingComponent /> : (
         <section>
           <section>

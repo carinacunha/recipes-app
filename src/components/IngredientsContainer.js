@@ -21,6 +21,7 @@ function IngredientsContainer(props) {
       }
     });
     setRenderIngredients(ingredientsAndMeasures);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   return (

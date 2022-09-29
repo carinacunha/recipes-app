@@ -36,6 +36,8 @@ function RecipeInProgress(props) {
     }
   }, []);
 
+  const { history } = props;
+
   return (
     <div>
       <HeaderRecipe type={ type } recipe={ recipe } />
