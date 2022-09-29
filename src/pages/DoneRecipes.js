@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import MealCard from '../components/MealCard';
+import CardDoneRecipe from '../components/CardDoneRecipe';
 
 const done = [
   {
@@ -31,7 +31,6 @@ function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState(done);
 
   const filterByType = ({ target }) => {
-    console.log(target.name);
     if (target.name === 'meal') {
       const filterMeals = done.filter((elem) => elem.type === target.name);
       setDoneRecipes(filterMeals);
@@ -43,7 +42,6 @@ function DoneRecipes() {
       return;
     } setDoneRecipes(done);
   };
-  console.log(doneRecipes);
   return (
     <div>
       <Header />
@@ -76,7 +74,7 @@ function DoneRecipes() {
 
       {
         doneRecipes.map((recipe, index) => (
-          <MealCard recipe={ recipe } key={ index } index={ index } />))
+          <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
       }
     </div>
   );
