@@ -11,8 +11,12 @@ function ShareButton(props) {
     const pathHome = window.location.href.split('/')[2];
     const { history } = props;
     const { pathname } = history.location;
-    const linkToCopy = `http://${pathHome}${pathname}`;
-    copy(linkToCopy);
+    if (pathname.includes('in-progress')) {
+      const split = pathname.split('/i')[0];
+      copy(`http://${pathHome}${split}`);
+    } else {
+      copy(`http://${pathHome}${pathname}`);
+    }
     setUrlCopy(true);
   };
 

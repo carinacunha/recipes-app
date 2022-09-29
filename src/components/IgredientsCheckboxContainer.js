@@ -1,34 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import renderingIngredients from '../services/renderingIgredients';
+import { useLocalStorageNonString } from '../hooks/index';
 
 const onChange = ({ target }, ingredient, setUsedIngredients, typeThe) => {
-  const { type, id } = typeThe;
+  const { type, id, setInProgress } = typeThe;
   const oldLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (target.checked) {
     if (oldLocal[type][id]) {
       oldLocal[type][id] = [...oldLocal[type][id], ingredient];
-      localStorage.setItem('inProgressRecipes', JSON.stringify(oldLocal));
+      setInProgress(oldLocal);
       setUsedIngredients(oldLocal[type][id]);
     } else {
       oldLocal[type][id] = [ingredient];
-      localStorage.setItem('inProgressRecipes', JSON.stringify(oldLocal));
+      setInProgress(oldLocal);
       setUsedIngredients(oldLocal[type][id]);
     }
-  } else if (oldLocal[type][id]) {
+  } else {
     const newLocal = oldLocal[type][id].filter((i) => i !== ingredient);
     oldLocal[type][id] = newLocal;
-    localStorage.setItem('inProgressRecipes', JSON.stringify(oldLocal));
+    setInProgress(oldLocal);
     setUsedIngredients(oldLocal[type][id]);
-  } else {
-    console.error('aaaaaaaaaaaa');
   }
 };
 
 function IngredientsCheckboxContainer(props) {
-  const { recipe, type, id } = props;
+  const { recipe, type, id, usedIngredients, setUsedIngredients } = props;
   const [renderIngredients, setRenderIngredients] = useState({});
-  const [usedIngredients, setUsedIngredients] = useState([]);
+  const [inProgress, setInProgress] = useLocalStorageNonString('inProgressRecipes', {
+    drinks: {},
+    meals: {},
+  });
+
+  console.log(inProgress);
 
   useEffect(() => {
     renderingIngredients(recipe, setRenderIngredients);
@@ -40,11 +44,12 @@ function IngredientsCheckboxContainer(props) {
         if (inId) setUsedIngredients(inId);
       }
     }
-  }, [props]);
+  }, [recipe]);
 
   const typeThe = {
     type,
     id,
+    setInProgress,
   };
 
   return (
@@ -52,7 +57,7 @@ function IngredientsCheckboxContainer(props) {
       <label
         key={ i }
         htmlFor={ ingredient }
-        data-testid="0-ingredient-step"
+        data-testid={ `${i}-ingredient-step` }
       >
         <input
           type="checkbox"
@@ -68,6 +73,10 @@ function IngredientsCheckboxContainer(props) {
 
 IngredientsCheckboxContainer.propTypes = {
   recipe: PropTypes.shape(),
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  usedIngredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setUsedIngredients: PropTypes.func.isRequired,
 }.isRequired;
 
 export default IngredientsCheckboxContainer;
