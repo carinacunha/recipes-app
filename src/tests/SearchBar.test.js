@@ -2,8 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
-import { mockFetchFiltered, mockFetchRecipes } from './mocks/mockFetchRecipes';
-import mockFetchRecipesList from './mocks/mockFetchRecipesList';
+import { mockFetchRecipes } from './mocks/mockFetchRecipes';
 
 describe('Testa o componente SearchBar', () => {
   it('Testa se limpa os inputs depois de clickar no botão caso retorne null', async () => {
