@@ -10,12 +10,18 @@ export default function SearchBar() {
     setSearchAPIcall, setCurrURL, setSearchInputValue,
   } = useContext(RecipesAppContext);
 
+  let URL;
+
   const { location: { pathname } } = useHistory();
   const { push } = useHistory();
 
-  const path = () => {
-    if (pathname === '/meals') return 'meals';
-    if (pathname === '/drinks') return 'drinks';
+  const handleAlert = () => {
+    const path = pathname === '/meals' ? 'meals' : 'drinks';
+    if (searchAPIcall?.[path] === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      setCurrURL('');
+      setSearchInputValue({ Value: '' });
+    }
   };
 
   useEffect(() => {
@@ -27,32 +33,23 @@ export default function SearchBar() {
     && searchAPIcall.drinks?.length === 1) {
       push(`/drinks/${searchAPIcall?.drinks[0].idDrink}`);
     }
-    if (searchAPIcall?.[path()] === null) {
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
-      setCurrURL('');
-      setSearchInputValue({ Value: '' });
-    }
+    handleAlert();
   }, [searchAPIcall]);
 
-  let URL;
-
-  const inputValue = searchInputValue.Value;
-
-  const checkPath = () => {
-    if (pathname === '/drinks') return 'thecocktaildb';
-    if (pathname === '/meals') return 'themealdb';
-  };
-
   const verifyRadiosMeals = () => {
+    const inputValue = searchInputValue.Value;
+
+    const checkPath = pathname === '/drinks' ? 'thecocktaildb' : 'themealdb';
+
     switch (searchRadio.value) {
     case 'ingredient':
-      if (inputValue?.length > 0) URL = `https://www.${checkPath()}.com/api/json/v1/1/filter.php?i=${searchInputValue.Value}`;
+      if (inputValue?.length > 0) URL = `https://www.${checkPath}.com/api/json/v1/1/filter.php?i=${searchInputValue.Value}`;
       break;
     case 'name':
-      if (inputValue?.length > 0) URL = `https://www.${checkPath()}.com/api/json/v1/1/search.php?s=${searchInputValue.Value}`;
+      if (inputValue?.length > 0) URL = `https://www.${checkPath}.com/api/json/v1/1/search.php?s=${searchInputValue.Value}`;
       break;
     case 'first letter':
-      if (inputValue?.length === 1) URL = `https://www.${checkPath()}.com/api/json/v1/1/search.php?f=${searchInputValue.Value}`;
+      if (inputValue?.length === 1) URL = `https://www.${checkPath}.com/api/json/v1/1/search.php?f=${searchInputValue.Value}`;
       if (inputValue?.length > 1) {
         setSearchInputValue({ Value: '' });
         return global.alert('Your search must have only 1 (one) character');
@@ -98,6 +95,7 @@ export default function SearchBar() {
           onClick={ async () => {
             setSearchAPIcall(await fetchApi(URL));
             setCurrURL(URL);
+            setSearchInputValue({ Value: '' });
           } }
         >
           search

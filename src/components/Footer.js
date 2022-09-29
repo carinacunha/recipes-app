@@ -7,9 +7,8 @@ import '../App.css';
 import RecipesAppContext from '../context/RecipesAppContext';
 
 function Footer() {
-  const { setCurrURL } = useContext(RecipesAppContext);
+  const { setCurrURL, setSearchAPIcall } = useContext(RecipesAppContext);
   const history = useHistory();
-  const { setCurrURL } = useContext(RecipesAppContext);
   return (
     <footer data-testid="footer" className="footer-menu">
       <input
@@ -20,6 +19,7 @@ function Footer() {
         onClick={ () => {
           history.push('/drinks');
           setCurrURL('');
+          setSearchAPIcall([]);
         } }
       />
       <input
@@ -30,6 +30,7 @@ function Footer() {
         onClick={ () => {
           history.push('/meals');
           setCurrURL('');
+          setSearchAPIcall([]);
         } }
       />
     </footer>
