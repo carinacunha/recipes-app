@@ -9,7 +9,6 @@ import RecipesAppContext from '../context/RecipesAppContext';
 function Footer() {
   const { setCurrURL } = useContext(RecipesAppContext);
   const history = useHistory();
-  const { setCurrURL } = useContext(RecipesAppContext);
   return (
     <footer data-testid="footer" className="footer-menu">
       <input
