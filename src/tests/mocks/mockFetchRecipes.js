@@ -30,6 +30,10 @@ const CORBA_INST = 'Pick through your lentils for any foreign debris, rinse them
 const CORBA_LINK = 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg';
 const MINT = 'Mint';
 const EMPTY = ' ';
+const YTLINK = 'https://www.youtube.com/watch?v=VVnZd8A84z4';
+const BLACK_PEPPER = 'Black Pepper';
+const RED_PEPPER_FLAKES = 'Red Pepper Flakes';
+const CORBA_SOURCE = 'https://findingtimeforcooking.com/main-dishes/red-lentil-soup-corba/';
 
 export const mockFetchOneId = {
   meals: [{
@@ -41,7 +45,7 @@ export const mockFetchOneId = {
     strInstructions: CORBA_INST,
     strMealThumb: CORBA_LINK,
     strTags: 'Soup',
-    strYoutube: 'https://www.youtube.com/watch?v=VVnZd8A84z4',
+    strYoutube: YTLINK,
     strIngredient1: 'Lentils',
     strIngredient2: 'Onion',
     strIngredient3: 'Carrots',
@@ -50,8 +54,8 @@ export const mockFetchOneId = {
     strIngredient6: 'Paprika',
     strIngredient7: MINT,
     strIngredient8: 'Thyme',
-    strIngredient9: 'Black Pepper',
-    strIngredient10: 'Red Pepper Flakes',
+    strIngredient9: BLACK_PEPPER,
+    strIngredient10: RED_PEPPER_FLAKES,
     strIngredient11: VEGETABLE_STOCK,
     strIngredient12: 'Water',
     strIngredient13: 'Sea Salt',
@@ -82,7 +86,7 @@ export const mockFetchOneId = {
     strMeasure18: EMPTY,
     strMeasure19: EMPTY,
     strMeasure20: EMPTY,
-    strSource: 'https://findingtimeforcooking.com/main-dishes/red-lentil-soup-corba/',
+    strSource: CORBA_SOURCE,
     strImageSource: null,
     strCreativeCommonsConfirmed: null,
     dateModified: null,
@@ -157,7 +161,7 @@ export const mockFetchRecipes = {
       strInstructions: CORBA_INST,
       strMealThumb: CORBA_LINK,
       strTags: 'Soup',
-      strYoutube: 'https://www.youtube.com/watch?v=VVnZd8A84z4',
+      strYoutube: YTLINK,
       strIngredient1: 'Lentils',
       strIngredient2: 'Onion',
       strIngredient3: 'Carrots',
@@ -166,8 +170,8 @@ export const mockFetchRecipes = {
       strIngredient6: 'Paprika',
       strIngredient7: MINT,
       strIngredient8: 'Thyme',
-      strIngredient9: 'Black Pepper',
-      strIngredient10: 'Red Pepper Flakes',
+      strIngredient9: BLACK_PEPPER,
+      strIngredient10: RED_PEPPER_FLAKES,
       strIngredient11: VEGETABLE_STOCK,
       strIngredient12: 'Water',
       strIngredient13: 'Sea Salt',
@@ -198,7 +202,7 @@ export const mockFetchRecipes = {
       strMeasure18: EMPTY,
       strMeasure19: EMPTY,
       strMeasure20: EMPTY,
-      strSource: 'https://findingtimeforcooking.com/main-dishes/red-lentil-soup-corba/',
+      strSource: CORBA_SOURCE,
       strImageSource: null,
       strCreativeCommonsConfirmed: null,
       dateModified: null,
@@ -2904,7 +2908,7 @@ export const mockTest = {
       strInstructions: CORBA_INST,
       strMealThumb: CORBA_LINK,
       strTags: 'Soup',
-      strYoutube: 'https://www.youtube.com/watch?v=VVnZd8A84z4',
+      strYoutube: YTLINK,
       strIngredient1: 'Lentils',
       strIngredient2: 'Onion',
       strIngredient3: 'Carrots',
@@ -2913,8 +2917,8 @@ export const mockTest = {
       strIngredient6: 'Paprika',
       strIngredient7: MINT,
       strIngredient8: 'Thyme',
-      strIngredient9: 'Black Pepper',
-      strIngredient10: 'Red Pepper Flakes',
+      strIngredient9: BLACK_PEPPER,
+      strIngredient10: RED_PEPPER_FLAKES,
       strIngredient11: VEGETABLE_STOCK,
       strIngredient12: 'Water',
       strIngredient13: 'Sea Salt',
@@ -2945,7 +2949,7 @@ export const mockTest = {
       strMeasure18: EMPTY,
       strMeasure19: EMPTY,
       strMeasure20: EMPTY,
-      strSource: 'https://findingtimeforcooking.com/main-dishes/red-lentil-soup-corba/',
+      strSource: CORBA_SOURCE,
       strImageSource: null,
       strCreativeCommonsConfirmed: null,
       dateModified: null,
