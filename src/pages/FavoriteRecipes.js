@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import CardFavoriteRecipe from '../components/CardFavoriteRecipe';
+// muito bom!
 
-function FavoriteRecipes(props) {
+function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState();
-  const { history } = props;
 
   useEffect(() => {
     const getFavoriteStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -21,7 +20,7 @@ function FavoriteRecipes(props) {
       const localFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
       const filterDrinks = localFavorites.filter((elem) => elem.type === target.name);
       setFavoriteRecipes(filterDrinks);
-    } else if (target.name === 'all') {
+    } else {
       const localFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
       setFavoriteRecipes(localFavorites);
     }
@@ -57,14 +56,6 @@ function FavoriteRecipes(props) {
         Drinks
       </button>
 
-      <button
-        name="back"
-        type="button"
-        onClick={ () => history.push('/meals') }
-      >
-        Go Home
-      </button>
-
       {
         favoriteRecipes?.map((recipe, index) => (
           <CardFavoriteRecipe
@@ -77,11 +68,5 @@ function FavoriteRecipes(props) {
     </div>
   );
 }
-
-FavoriteRecipes.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default FavoriteRecipes;
