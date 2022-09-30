@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import CardFavoriteRecipe from '../components/CardFavoriteRecipe';
+// muito bom!
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState();
