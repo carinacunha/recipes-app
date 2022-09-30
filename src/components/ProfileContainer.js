@@ -9,8 +9,7 @@ function ProfileContainer(props) {
     if (user) {
       setEmail(user.email);
     } else {
-      const { history } = props;
-      history.push('/');
+      setEmail('');
     }
   }, []);
 
