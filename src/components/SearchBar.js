@@ -18,6 +18,7 @@ export default function SearchBar() {
   const handleAlert = () => {
     const path = pathname === '/meals' ? 'meals' : 'drinks';
     if (searchAPIcall?.[path] === null) {
+      console.log('cheguei');
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
       setCurrURL('');
       setSearchInputValue({ Value: '' });

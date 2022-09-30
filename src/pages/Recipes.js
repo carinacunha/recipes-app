@@ -59,7 +59,7 @@ export default function Recipes() {
 
     const fetchRecipes = async () => {
       const request = await fetchApi(URL);
-      const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
+      const onlyTwelveFirst = request[currKey]?.filter((e, i) => i <= ONZE);
       setRecipesState({
         recipes: onlyTwelveFirst,
         type: currKey,
@@ -68,7 +68,7 @@ export default function Recipes() {
     };
     const fetchRecipeList = async () => {
       const request = await fetchApi(URL_LIST);
-      const onlyFiveFirst = request[currKey].filter((e, i) => i <= QUATRO);
+      const onlyFiveFirst = request[currKey]?.filter((e, i) => i <= QUATRO);
       setRecipeList({
         ...recipeList,
         list: onlyFiveFirst,
@@ -83,7 +83,7 @@ export default function Recipes() {
     if (name === categoryWasClicked) {
       setLoading(true);
       const request = await fetchApi(URL);
-      const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
+      const onlyTwelveFirst = request[currKey]?.filter((e, i) => i <= ONZE);
       setRecipesState({
         recipes: onlyTwelveFirst,
         type: currKey,
@@ -133,7 +133,7 @@ export default function Recipes() {
       { loading ? <LoadingComponent /> : (
         <section>
           <section>
-            { recipeList.list.length > 0 ? recipeList.list.map(({ strCategory }) => (
+            { recipeList.list?.length > 0 ? recipeList.list.map(({ strCategory }) => (
               <button
                 name={ strCategory }
                 key={ strCategory }
