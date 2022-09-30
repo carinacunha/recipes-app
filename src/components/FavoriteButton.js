@@ -5,7 +5,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteButton(props) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { id, recipe, type } = props;
+  const { id, recipe, type, setFavoriteRecipes } = props;
 
   let types = '';
   if (type === 'meals') {
@@ -38,6 +38,9 @@ function FavoriteButton(props) {
       const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
       const newFavoriteRecipes = favoriteRecipes.filter((item) => item.id !== id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+      if (setFavoriteRecipes) {
+        setFavoriteRecipes(newFavoriteRecipes);
+      }
     }
   };
 
