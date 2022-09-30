@@ -71,26 +71,22 @@ describe('Implementa casos de testes de Recipe.js', () => {
     await findCards([0, 1, 2, 3, 4, 5, 6], 7);
   });
 
-  // test('Testa se é possível retirar o filtro quando o botão de categoria é clicado novamente', async () => {
-  //   global.fetch = jest.fn().mockResolvedValueOnce({
-  //     json: jest.fn().mockResolvedValue(mockFetchRecipes),
-  //   }).mockResolvedValueOnce({
-  //     json: jest.fn().mockResolvedValue(mockFetchRecipesList),
-  //   }).mockResolvedValueOnce({
-  //     json: jest.fn().mockResolvedValue(mockFetchFiltered),
-  //   }).mockResolvedValueOnce({
-  //     json: jest.fn().mockResolvedValue(mockFetchRecipes),
-  //   });
+  test('Testa se é possível retirar o filtro quando o botão de categoria é clicado novamente', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      json: jest.fn().mockResolvedValue(mockFetchRecipes)
+        .mockResolvedValueOnce(mockFetchRecipesList)
+        .mockResolvedValueOnce(mockFetchFiltered),
+    });
 
-  //   renderWithRouter(<App />, { initialEntries: ['/meals'] });
+    renderWithRouter(<App />, { initialEntries: ['/meals'] });
 
-  //   const breackFastBtn = await screen.findByTestId('Breakfast-category-filter');
-  //   userEvent.click(breackFastBtn);
+    const breackFastBtn = await screen.findByTestId('Breakfast-category-filter');
+    userEvent.click(breackFastBtn);
 
-  //   await findCards([0, 1, 2, 3, 4, 5, 6], 7);
+    await findCards([0, 1, 2, 3, 4, 5, 6], 7);
 
-  //   userEvent.click(breackFastBtn);
+    userEvent.click(breackFastBtn);
 
-  //   await findCards(cardsQuantity, 12);
-  // });
+    await findCards(cardsQuantity, 12);
+  });
 });
