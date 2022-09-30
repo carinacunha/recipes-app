@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import CardDoneRecipe from '../components/CardDoneRecipe';
 
-const done = JSON.parse(localStorage.getItem('doneRecipes')) === null
-  ? JSON.parse(localStorage.getItem('doneRecipes')) : [];
 function DoneRecipes() {
-  const [doneRecipes, setDoneRecipes] = useState(done);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem('doneRecipes'));
+    setDoneRecipes(local);
+  }, []);
 
   const filterByType = ({ target }) => {
     if (target.name === 'meal') {
-      const filterMeals = done.filter((elem) => elem.type === target.name);
+      const localDone = JSON.parse(localStorage.getItem('doneRecipes'));
+      const filterMeals = localDone.filter((elem) => elem.type === target.name);
       setDoneRecipes(filterMeals);
-      return;
-    }
-    if (target.name === 'drink') {
-      const filterDrinks = done.filter((elem) => elem.type === target.name);
+    } else if (target.name === 'drink') {
+      const localDone = JSON.parse(localStorage.getItem('doneRecipes'));
+      const filterDrinks = localDone.filter((elem) => elem.type === target.name);
       setDoneRecipes(filterDrinks);
-      return;
+    } else {
+      const localDone = JSON.parse(localStorage.getItem('doneRecipes'));
+      setDoneRecipes(localDone);
     }
-    setDoneRecipes(done);
   };
 
   return (
@@ -52,7 +56,7 @@ function DoneRecipes() {
       </button>
 
       {
-        doneRecipes.map((recipe, index) => (
+        doneRecipes?.map((recipe, index) => (
           <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
       }
     </div>

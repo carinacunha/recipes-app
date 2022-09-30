@@ -12,12 +12,14 @@ function FinishRecipeButton(props) {
   }, [recipe]);
 
   useEffect(() => {
-    if (ingredients.length === usedIngredients.length) {
+    if (usedIngredients !== 0 && ingredients.length === usedIngredients.length) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
   }, [usedIngredients]);
+
+  const types = type === 'meals' ? 'meal' : 'drink';
 
   const handleClick = () => {
     const toLocal = {
@@ -27,7 +29,7 @@ function FinishRecipeButton(props) {
       image: recipe.strMealThumb ? recipe.strMealThumb : recipe.strDrinkThumb,
       name: recipe.strMeal ? recipe.strMeal : recipe.strDrink,
       nationality: recipe.strArea ? recipe.strArea : '',
-      type,
+      type: types,
       doneDate: new Date(),
       tags: recipe.strTags ? recipe.strTags.split(',') : [],
     };
