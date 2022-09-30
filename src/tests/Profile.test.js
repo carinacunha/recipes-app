@@ -93,7 +93,7 @@ describe('Testa o componente <Login />', () => {
 
   test('Testa se caso nao existir user volta pro login', async () => {
     localStorage.clear();
-    const { history } = renderWithRouter(<App />, { initialEntries: ['/profile'] });
-    await waitFor(() => expect(history.location.pathname).toBe('/'));
+    renderWithRouter(<App />, { initialEntries: ['/profile'] });
+    await waitFor(() => expect(screen.getByTestId('profile-email')).toHaveTextContent(''));
   });
 });
