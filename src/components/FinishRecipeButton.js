@@ -29,7 +29,7 @@ function FinishRecipeButton(props) {
       nationality: recipe.strArea ? recipe.strArea : '',
       type,
       doneDate: new Date(),
-      tags: recipe.strTags ? recipe.strTags : [],
+      tags: recipe.strTags ? recipe.strTags.split(',') : [],
     };
     const localDones = JSON.parse(localStorage.getItem('doneRecipes'));
     if (localDones) {

@@ -7,7 +7,7 @@ function CardDoneRecipe({ recipe, index }) {
   const { type, id } = recipe;
   const url = type === 'meal' ? `/meals/${id}`
     : `/drinks/${id}`;
-
+  console.log(recipe);
   return (
 
     <div>
@@ -52,7 +52,7 @@ function CardDoneRecipe({ recipe, index }) {
 
       <section>
         {
-          recipe.tags.map((tag) => (
+          recipe.tags?.map((tag) => (
             <p
               key={ tag }
               data-testid={ `${index}-${tag}-horizontal-tag` }
