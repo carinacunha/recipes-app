@@ -53,7 +53,7 @@ export default function Recipes() {
       currKey = 'meals';
     }
     }
-    if (currURL.length > 0) {
+    if (currURL?.length > 0) {
       URL = currURL;
     }
 

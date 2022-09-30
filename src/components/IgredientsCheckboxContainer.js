@@ -1,45 +1,84 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import renderingIngredients from '../services/renderingIgredients';
+import { useLocalStorageNonString } from '../hooks/index';
+
+const onChange = ({ target }, ingredient, setUsedIngredients, typeThe) => {
+  const { type, id, setInProgress } = typeThe;
+  const oldLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (target.checked) {
+    if (oldLocal[type][id]) {
+      oldLocal[type][id] = [...oldLocal[type][id], ingredient];
+      setInProgress(oldLocal);
+      setUsedIngredients(oldLocal[type][id]);
+    } else {
+      oldLocal[type][id] = [ingredient];
+      setInProgress(oldLocal);
+      setUsedIngredients(oldLocal[type][id]);
+    }
+  } else {
+    const newLocal = oldLocal[type][id].filter((i) => i !== ingredient);
+    oldLocal[type][id] = newLocal;
+    setInProgress(oldLocal);
+    setUsedIngredients(oldLocal[type][id]);
+  }
+};
 
 function IngredientsCheckboxContainer(props) {
-  const { recipe } = props;
+  const { recipe, type, id, usedIngredients, setUsedIngredients } = props;
   const [renderIngredients, setRenderIngredients] = useState({});
+  const [inProgress, setInProgress] = useLocalStorageNonString('inProgressRecipes', {
+    drinks: {},
+    meals: {},
+  });
+
+  console.log(inProgress);
 
   useEffect(() => {
-    const keys = Object.keys(recipe);
-    const ingredients = keys.filter((key) => key.includes('Ingredient'));
-    const measures = keys.filter((key) => key.includes('Measure'));
-    const ingredientsAndMeasures = [];
-    ingredients.forEach((ingredient, i) => {
-      if (recipe[ingredients[i]] !== '' && recipe[ingredients[i]] !== null) {
-        if (recipe[measures[i]] !== '' && recipe[measures[i]] !== null) {
-          ingredientsAndMeasures
-            .push(`${recipe[ingredients[i]]} - ${recipe[measures[i]]}`);
-        } else {
-          ingredientsAndMeasures.push(recipe[ingredients[i]]);
-        }
+    renderingIngredients(recipe, setRenderIngredients);
+    const inLocalProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inLocalProgress) {
+      const inType = inLocalProgress[type];
+      if (inType) {
+        const inId = inType[id];
+        if (inId) setUsedIngredients(inId);
+      } else {
+        setUsedIngredients([]);
       }
-    });
-    setRenderIngredients(ingredientsAndMeasures);
-  }, [props]);
+    }
+  }, [recipe]);
+
+  const typeThe = {
+    type,
+    id,
+    setInProgress,
+  };
 
   return (
     renderIngredients.length > 0 ? renderIngredients.map((ingredient, i) => (
-      <li key={ i }>
-        <label
-          htmlFor={ ingredient }
-          data-testid={ `data-testid=${i}-ingredient-step` }
-        >
-          <input type="checkbox" id={ ingredient } />
-          {ingredient}
-        </label>
-      </li>
+      <label
+        key={ i }
+        htmlFor={ ingredient }
+        data-testid={ `${i}-ingredient-step` }
+      >
+        <input
+          type="checkbox"
+          id={ ingredient }
+          onChange={ (event) => onChange(event, ingredient, setUsedIngredients, typeThe) }
+          checked={ usedIngredients.some((index) => index === ingredient) }
+        />
+        {ingredient}
+      </label>
     )) : <p>Carregando...</p>
   );
 }
 
 IngredientsCheckboxContainer.propTypes = {
   recipe: PropTypes.shape(),
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  usedIngredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setUsedIngredients: PropTypes.func.isRequired,
 }.isRequired;
 
 export default IngredientsCheckboxContainer;

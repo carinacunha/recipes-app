@@ -4,19 +4,16 @@ import shareIcon from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
-function ShareButton(props) {
+function ShareButtonDone(props) {
+  const { recipe, index } = props;
+  const { type, id } = recipe;
   const [ulrCopy, setUrlCopy] = useState(false);
-
   const copyToClip = () => {
     const pathHome = window.location.href.split('/')[2];
-    const { history } = props;
-    const { pathname } = history.location;
-    if (pathname.includes('in-progress')) {
-      const split = pathname.split('/i')[0];
-      copy(`http://${pathHome}${split}`);
-    } else {
-      copy(`http://${pathHome}${pathname}`);
-    }
+    console.log(pathHome);
+    const linkToCopy = type === 'meal' ? `http://${pathHome}/meals/${id}`
+      : `http://${pathHome}/drinks/${id}`;
+    copy(linkToCopy);
     setUrlCopy(true);
   };
 
@@ -24,7 +21,8 @@ function ShareButton(props) {
     <div>
       <button
         type="button"
-        data-testid="share-btn"
+        src={ shareIcon }
+        data-testid={ `${index}-horizontal-share-btn` }
         onClick={ copyToClip }
       >
         <img src={ shareIcon } alt="Compartilhar" />
@@ -35,12 +33,9 @@ function ShareButton(props) {
   );
 }
 
-ShareButton.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
+ShareButtonDone.propTypes = {
+  recipe: PropTypes.shape().isRequired,
+  index: PropTypes.number.isRequired,
 };
 
-export default ShareButton;
+export default ShareButtonDone;

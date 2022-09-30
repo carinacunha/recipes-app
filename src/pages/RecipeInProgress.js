@@ -9,8 +9,9 @@ import IngredientsCheckboxContainer from '../components/IgredientsCheckboxContai
 
 function RecipeInProgress(props) {
   const [recipe, setRecipe] = useState({});
+  const [usedIngredients, setUsedIngredients] = useState([]);
   const { match: { params: { id } } } = props;
-  const { match: { path } } = props;
+  const { match: { path }, history } = props;
   const type = path.split('/')[1];
   const urlType = type === 'meals' ? 'themealdb' : 'thecocktaildb';
   const url = `https://www.${urlType}.com/api/json/v1/1/lookup.php?i=${id}`;
@@ -26,16 +27,33 @@ function RecipeInProgress(props) {
       }
     };
     fetchRecipe();
+    const local = localStorage.getItem('inProgressRecipes');
+    if (!local) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        drinks: {},
+        meals: {},
+      }));
+    }
   }, []);
-
-  const { history } = props;
 
   return (
     <div>
       <HeaderRecipe type={ type } recipe={ recipe } />
-      <IngredientsCheckboxContainer recipe={ recipe } />
+      <IngredientsCheckboxContainer
+        setUsedIngredients={ setUsedIngredients }
+        usedIngredients={ usedIngredients }
+        recipe={ recipe }
+        type={ type }
+        id={ id }
+      />
       <InstructionsContainer recipe={ recipe } />
-      <FinishRecipeButton />
+      <FinishRecipeButton
+        recipe={ recipe }
+        type={ type }
+        id={ id }
+        usedIngredients={ usedIngredients }
+        history={ history }
+      />
       <FavoriteButton recipe={ recipe } id={ id } type={ type } />
       <ShareButton history={ history } />
     </div>
