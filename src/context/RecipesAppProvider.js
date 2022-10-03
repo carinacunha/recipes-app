@@ -8,6 +8,7 @@ function RecipesAppProvider({ children }) {
   const [currURL, setCurrURL] = useState('');
   const [searchInputValue, setSearchInputValue] = useState({ Value: '' });
   const [searchRadio, setSearchRadio] = useState({ Value: '' });
+  const [barVisible, setBarVisible] = useState(false);
 
   const handleInputBar = ({ target: { name, value } }) => {
     setSearchInputValue(() => (
@@ -29,11 +30,13 @@ function RecipesAppProvider({ children }) {
     searchRadio,
     searchAPIcall,
     currURL,
+    barVisible,
     handleInputBar,
     handleInputRadio,
     setSearchAPIcall,
     setSearchInputValue,
     setCurrURL,
+    setBarVisible,
   };
 
   return (

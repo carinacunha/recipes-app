@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import loginThumb2 from '../images/loginThumb2.png';
+import '../css/Login.css';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -42,28 +44,27 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            id="email"
-            name="email"
-            data-testid="email-input"
-            onChange={ ({ target }) => setEmail(target.value) }
-          />
-        </label>
-        <label htmlFor="password">
-          Senha:
-          <input
-            type="password"
-            id="password"
-            name="password"
-            data-testid="password-input"
-            onChange={ ({ target }) => setPassword(target.value) }
-          />
-        </label>
+    <section className="login-screen">
+      <section>
+        <img src={ loginThumb2 } alt="meals and wine" />
+      </section>
+      <form className="login-form" onSubmit={ handleSubmit }>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          data-testid="email-input"
+          placeholder="Email"
+          onChange={ ({ target }) => setEmail(target.value) }
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          data-testid="password-input"
+          placeholder="Senha"
+          onChange={ ({ target }) => setPassword(target.value) }
+        />
         <button
           type="submit"
           data-testid="login-submit-btn"
@@ -72,7 +73,7 @@ function Login(props) {
           Entrar
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 

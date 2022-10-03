@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ButtonSearch from '../components/ButtonSearch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
 import fetchApi from '../services/fetchApi';
 import LoadingComponent from '../components/LoadingComponent';
 import RecipesAppContext from '../context/RecipesAppContext';
+import SearchBar from '../components/SearchBar';
 import setURLFilter from '../services/setURLFilter';
 import fetchFilterAPI from '../services/fetchFilterAPI';
 
@@ -22,18 +22,21 @@ let URL = '';
 
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
-  const { currURL } = useContext(RecipesAppContext);
+  const [categoryWasClicked, setCategoryWasClicked] = useState('');
+  const { currURL,
+    barVisible,
+    searchInputValue,
+    handleInputBar,
+  } = useContext(RecipesAppContext);
   const [recipesState, setRecipesState] = useState({
     recipes: [],
     type: '',
   });
   const [toggleFilter, setToggleFilter] = useState(true);
-
   const [recipeList, setRecipeList] = useState({
     list: [],
     type: '',
   });
-
   const { location: { pathname } } = useHistory();
 
   useEffect(() => {
@@ -82,31 +85,6 @@ export default function Recipes() {
   }, [pathname, currURL]); // eslint-disable-line
 
   const getByCategory = async ({ target: { name } }) => {
-    // if (name === categoryWasClicked) {
-    //   setLoading(true);
-    //   const request = await fetchApi(URL);
-    //   const onlyTwelveFirst = request[currKey]?.filter((e, i) => i <= ONZE);
-    //   setRecipesState({
-    //     recipes: onlyTwelveFirst,
-    //     type: currKey,
-    //   });
-
-    //   setLoading(false);
-    //   return;
-    // }
-
-    // setLoading(true);
-    // let URL_CATEGORY = '';
-    // switch (pathname) {
-    // case '/drinks': {
-    //   URL_CATEGORY = URL_FILTER_DRINKS + name;
-    //   break;
-    // }
-    // default: {
-    //   URL_CATEGORY = URL_FILTER_FOODS + name;
-    // }
-    // }
-
     const URL_CATEGORY = setURLFilter(
       pathname,
       URL_FILTER_DRINKS,
@@ -117,7 +95,6 @@ export default function Recipes() {
     const onlyTwelveFirst2 = await fetchFilterAPI(URL_CATEGORY, currKey);
     setRecipesState({ ...recipesState, recipes: onlyTwelveFirst2 });
     setLoading(false);
-    // setCategoryWasClicked(name);
     setToggleFilter(false);
   };
 
@@ -138,7 +115,20 @@ export default function Recipes() {
   return (
     <main>
       <Header />
-      <ButtonSearch />
+      {barVisible
+      && (
+        <div>
+          <input
+            name="Value"
+            data-testid="search-input"
+            type="text"
+            value={ searchInputValue.Value }
+            onChange={ handleInputBar }
+            placeholder="digite a receita"
+          />
+          <SearchBar />
+        </div>
+      )}
       { loading ? <LoadingComponent /> : (
         <section>
           <section>
