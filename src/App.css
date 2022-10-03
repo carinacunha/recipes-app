@@ -1,3 +1,14 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: rgb(12, 12, 12);
+  font-family: Quicksand , sans-serif;
+}
+
 .meals {
   align-items: center;
   background: #0fa36b;
@@ -67,16 +78,14 @@
   }
 }
 
-
-/* CSS PARA TESTES DO Footer */
-.footer-menu {
-  bottom: 0;
-  position: fixed;
-}
-
 .live__scroll {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 60px;
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 10px;
+  position: relative;
   white-space: nowrap;
 }
 
@@ -110,13 +119,6 @@
   width: 362.01px;
 }
 
-.recipe-video {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
-  border-radius: 0;
-  height: 205.09px;
-  width: 336px;
-}
-
 .recipe-main-title {
   color: white;
   font-size: 20px;
@@ -130,14 +132,3 @@
   width: 147px;
 }
 
-.video-recipe-title {
-  color: #1a1b1c;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  height: 21px;
-  left: 23.01px;
-  line-height: 20px;
-  top: 882px;
-  width: 142.8px;
-}

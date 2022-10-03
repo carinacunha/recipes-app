@@ -1,0 +1,13 @@
+.recipe-footer-btn {
+  background-color: white;
+  border-radius: 50px;
+  height: 45px;
+  padding: 2px;
+  width: 45px;
+}
+
+.heart {
+  height: 25px;
+  margin-top: 5px;
+  width: 25px;
+}

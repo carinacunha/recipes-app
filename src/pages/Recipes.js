@@ -9,6 +9,8 @@ import RecipesAppContext from '../context/RecipesAppContext';
 import SearchBar from '../components/SearchBar';
 import setURLFilter from '../services/setURLFilter';
 import fetchFilterAPI from '../services/fetchFilterAPI';
+import iconsBreakfast from '../images/iconsBreakfast.png';
+import '../css/Recipes.css';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -108,7 +110,6 @@ export default function Recipes() {
     });
 
     setLoading(false);
-    // setCategoryWasClicked('');
     setToggleFilter(true);
   };
 
@@ -131,27 +132,37 @@ export default function Recipes() {
       )}
       { loading ? <LoadingComponent /> : (
         <section>
-          <section>
+          <section className="live__scroll icons__category">
             { recipeList.list?.length > 0 ? recipeList.list.map(({ strCategory }) => (
-              <button
-                name={ strCategory }
+              <label
                 key={ strCategory }
-                type="button"
-                onClick={ toggleFilter ? getByCategory : clearFilters }
-                data-testid={ `${strCategory}-category-filter` }
+                htmlFor={ strCategory }
+                className="live__scroll--box icon__category"
               >
-                {strCategory}
-              </button>
+                <button
+                  id={ strCategory }
+                  name={ strCategory }
+                  type="button"
+                  onClick={ toggleFilter ? getByCategory : clearFilters }
+                  data-testid={ `${strCategory}-category-filter` }
+                >
+                  <img src={ iconsBreakfast } alt="" />
+                </button>
+                <p>{strCategory}</p>
+              </label>
             )) : null }
-            <button
-              type="button"
-              onClick={ clearFilters }
-              data-testid="All-category-filter"
-            >
-              All
-            </button>
+            <div className="live__scroll--box icon__category">
+              <button
+                type="button"
+                onClick={ clearFilters }
+                data-testid="All-category-filter"
+              >
+                <img src={ iconsBreakfast } alt="" />
+              </button>
+              <p>All</p>
+            </div>
           </section>
-          <section>
+          <section className="cards__recipes">
             { recipesState.recipes?.length > 0 ? recipesState.recipes.map((recipe, i) => (
               <CardRecipe
                 key={ i }

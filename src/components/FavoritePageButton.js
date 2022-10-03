@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import heartFavorite from '../images/heart (1).png';
+import '../styles/FavoriteButton.css';
 
 function FavoritePageButton(props) {
   const { id, index, setFavoriteRecipes } = props;
@@ -19,11 +20,12 @@ function FavoritePageButton(props) {
       data-testid={ `${index}-horizontal-favorite-btn` }
       onClick={ handleClick }
       label="favorite"
-      src={ blackHeartIcon }
+      src={ heartFavorite }
     >
       <img
-        src={ blackHeartIcon }
+        src={ heartFavorite }
         alt="favorite"
+        className="heart"
       />
     </button>
   );

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/RecipeDetails.css';
 
 function InstructionsContainer(props) {
   const { recipe } = props;
   return (
-    <div>
-      <h2>Instructions</h2>
+    <div className="instructions-container">
+      <h2 className="instructions-title">Instructions</h2>
       <p data-testid="instructions">{recipe.strInstructions}</p>
     </div>
   );
