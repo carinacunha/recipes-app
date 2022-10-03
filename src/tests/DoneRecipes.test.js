@@ -2,36 +2,76 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
-import DoneRecipes from '../pages/DoneRecipes';
 import { mockFetchRecipes } from './mocks/mockFetchRecipes';
 import App from '../App';
 
-const done = [{ alcoholicOrNot: '',
-  category: 'Vegetarian',
-  id: '53026',
-  image: 'https://www.themealdb.com/images/media/meals/n3xxd91598732796.jpg',
-  name: 'Tamiya',
-  nationality: 'Egyptian',
-  type: 'meals',
-  doneDate: '2022-09-30T19:30:53.690Z',
-  tags: [],
-},
-{ alcoholicOrNot: '',
-  category: 'Side',
-  id: '52977',
-  image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
-  name: 'Corba',
-  nationality: 'Turkish',
-  type: 'meals',
-  doneDate: '2022-09-30T21:03:11.883Z',
-  tags: ['Soup'],
-}];
+const DATA = '23/09/2022';
+const TAG = ['Soup'];
+
+const done = [
+  { alcoholicOrNot: 'Optional alcohol',
+    category: 'Ordinary Drink',
+    id: '15997',
+    image: 'https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg',
+    name: 'GG',
+    nationality: '',
+    type: 'drink',
+    doneDate: DATA,
+    tags: TAG,
+  },
+  { alcoholicOrNot: 'Alcoholic',
+    category: 'Cocktail',
+    id: '17222',
+    image: 'https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg',
+    name: 'A1',
+    nationality: '',
+    type: 'drink',
+    doneDate: DATA,
+    tags: TAG,
+  },
+  { alcoholicOrNot: 'Alcoholic',
+    category: 'Shot',
+    id: '13501',
+    image: 'https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg',
+    name: 'ABC',
+    nationality: '',
+    type: 'drink',
+    doneDate: DATA,
+    tags: TAG,
+  },
+  { alcoholicOrNot: '',
+    category: 'Side',
+    id: '52977',
+    image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+    name: 'Corba',
+    nationality: 'Turkish',
+    type: 'meal',
+    doneDate: DATA,
+    tags: TAG,
+  },
+  { alcoholicOrNot: '',
+    category: 'Side',
+    id: '53060',
+    image: 'https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg',
+    name: 'Burek',
+    nationality: 'Croatian',
+    type: 'meal',
+    doneDate: DATA,
+    tags: TAG,
+  },
+  {
+    alcoholicOrNot: '',
+    category: 'Seafood',
+    id: '53065',
+    image: 'https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg',
+    name: 'Sushi',
+    nationality: 'Japanese',
+    type: 'meal',
+    doneDate: DATA,
+    tags: TAG,
+  }];
 
 const URL = '/done-recipes';
-const ID_TITLE = 'page-title';
-const ID_BUTTON_SHARE = '0-horizontal-share-btn';
-const ID_IMAGE = '0-horizontal-image';
-const ID_FILTER_BTN = 'filter-by-all-btn';
 
 describe('Testa a funcionalidade da página doneRecipe', () => {
   beforeEach(() => {
@@ -41,11 +81,55 @@ describe('Testa a funcionalidade da página doneRecipe', () => {
   });
 
   test('Testa se os componentes são renderizados na tela', async () => {
-    renderWithRouter(<App />, { initialEntries: [URL] });
     localStorage.setItem('doneRecipes', JSON.stringify(done));
-    console.log(JSON.parse(localStorage.getItem(('doneRecipes'))));
+    renderWithRouter(<App />, { initialEntries: [URL] });
     await waitFor(() => expect(screen.getByTestId('page-title')).toBeInTheDocument(), { timeout: 2000 });
     await waitFor(() => expect(screen.getByTestId('0-horizontal-image')).toBeInTheDocument(), { timeout: 2000 });
-    screen.debug();
+  });
+
+  test('Testa se os filtros funcionam', async () => {
+    const THREE = 3;
+    const SIX = 6;
+    localStorage.setItem('doneRecipes', JSON.stringify(done));
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    const drinksButton = screen.getByTestId(/filter-by-drink-btn/i);
+    const mealsButton = screen.getByTestId(/filter-by-meal-btn/i);
+    const allButton = screen.getByTestId('filter-by-all-btn');
+    userEvent.click(drinksButton);
+    expect(screen.getAllByTestId(/[0-9]-horizontal-image/i)).toHaveLength(THREE);
+    userEvent.click(allButton);
+    expect(screen.getAllByTestId(/[0-9]-horizontal-image/i)).toHaveLength(SIX);
+    userEvent.click(mealsButton);
+    expect(screen.getAllByTestId(/[0-9]-horizontal-image/i)).toHaveLength(THREE);
+  });
+
+  test('testa o botao share', async () => {
+    localStorage.setItem('doneRecipes', JSON.stringify(done));
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    const mockData = 'http://localhost/drinks/15997';
+    const mockClipboard = {
+      writeText: jest.fn(),
+    };
+    global.navigator.clipboard = mockClipboard;
+    userEvent.click(screen.getByTestId('0-horizontal-share-btn'));
+    expect(navigator.clipboard.writeText).toBeCalledTimes(1);
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+      mockData,
+    );
+  });
+
+  test('testa o botao share', async () => {
+    localStorage.setItem('doneRecipes', JSON.stringify(done));
+    renderWithRouter(<App />, { initialEntries: [URL] });
+    const mockData = 'http://localhost/meals/52977';
+    const mockClipboard = {
+      writeText: jest.fn(),
+    };
+    global.navigator.clipboard = mockClipboard;
+    userEvent.click(screen.getByTestId('3-horizontal-share-btn'));
+    expect(navigator.clipboard.writeText).toBeCalledTimes(1);
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+      mockData,
+    );
   });
 });

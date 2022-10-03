@@ -1,0 +1,18 @@
+:root {
+
+  --red: rgb(253, 46, 0);
+
+  --white: rgb(245, 245, 246);
+}
+
+body {
+  background-color: var(--white);
+}
+
+
+.header {
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+}

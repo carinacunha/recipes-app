@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ButtonSearch from '../components/ButtonSearch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
 import fetchApi from '../services/fetchApi';
 import LoadingComponent from '../components/LoadingComponent';
 import RecipesAppContext from '../context/RecipesAppContext';
+import SearchBar from '../components/SearchBar';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -21,7 +21,12 @@ let URL = '';
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
   const [categoryWasClicked, setCategoryWasClicked] = useState('');
-  const { currURL } = useContext(RecipesAppContext);
+  const { currURL,
+    barVisible,
+    searchInputValue,
+    handleInputBar,
+  } = useContext(RecipesAppContext);
+
   const [recipesState, setRecipesState] = useState({
     recipes: [],
     type: '',
@@ -129,7 +134,20 @@ export default function Recipes() {
   return (
     <main>
       <Header />
-      <ButtonSearch />
+      {barVisible
+      && (
+        <div>
+          <input
+            name="Value"
+            data-testid="search-input"
+            type="text"
+            value={ searchInputValue.Value }
+            onChange={ handleInputBar }
+            placeholder="digite a receita"
+          />
+          <SearchBar />
+        </div>
+      )}
       { loading ? <LoadingComponent /> : (
         <section>
           <section>

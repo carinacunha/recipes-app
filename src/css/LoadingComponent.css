@@ -1,3 +1,10 @@
+:root {
+
+  --red: rgb(253, 46, 0);
+
+  --white: rgb(245, 245, 246);
+}
+
 @keyframes is-rotating {
 
   to {
@@ -16,9 +23,9 @@
 
 .loader {
   animation: is-rotating 1s infinite;
-  border: 6px solid rgba(195, 195, 195, 0.452);
+  border: 6px solid var(--white);
   border-radius: 100%;
-  border-top-color: rgb(43, 228, 160);
+  border-top-color: var(--red);
   height: 50px;
   margin: 20px;
   width: 50px;
