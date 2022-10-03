@@ -1,0 +1,19 @@
+.footer-menu {
+  background-color: white;
+  border-radius: 50px;
+  bottom: 0;
+  display: flex;
+  height: 45px;
+  justify-content: space-around;
+  left: 0;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  padding: 10px;
+  position: fixed;
+  width: 107px;
+}
+
+.footer-btn {
+  height: 25px;
+  width: 25px;
+}

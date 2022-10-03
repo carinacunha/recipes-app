@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/RecipeDetails.css';
 
 function IngredientsContainer(props) {
   const { recipe } = props;
@@ -25,14 +26,20 @@ function IngredientsContainer(props) {
   }, [props]);
 
   return (
-    renderIngredients.length > 0 ? renderIngredients.map((ingredient, i) => (
-      <li
-        key={ i }
-        data-testid={ `${i}-ingredient-name-and-measure` }
-      >
-        {ingredient}
-      </li>
-    )) : <p>Carregando...</p>
+    renderIngredients.length > 0
+      ? (
+        <div className="ingredients-container">
+          <h2 className="instructions-title">Ingredients</h2>
+          {renderIngredients.map((ingredient, i) => (
+            <li
+              key={ i }
+              data-testid={ `${i}-ingredient-name-and-measure` }
+            >
+              {ingredient}
+            </li>
+          ))}
+        </div>)
+      : null
   );
 }
 

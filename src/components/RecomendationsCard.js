@@ -6,6 +6,7 @@ import RecomendedMeals from './RecomendedMeals';
 import '../App.css';
 
 const SIX = 6;
+const HALF = 0.5;
 
 function RecomendationsCard(props) {
   const [recomendation, setRecomendation] = useState();
@@ -20,11 +21,13 @@ function RecomendationsCard(props) {
       if (type === 'meals') {
         setRecomendation(data.drinks
           .filter((drink) => drink.idDrink !== id)
-          .filter((e, i) => i < SIX));
+          .filter((e, i) => i < SIX))
+          .sort(() => Math.random() - HALF);
       } else {
         setRecomendation(data.meals
           .filter((meal) => meal.idMeal !== id)
-          .filter((e, i) => i < SIX));
+          .filter((e, i) => i < SIX))
+          .sort(() => Math.random() - HALF);
       }
     };
     fetchRecipe();
@@ -32,7 +35,6 @@ function RecomendationsCard(props) {
 
   return (
     <div className="live__scroll">
-      <h3 className="recomended_recipe_title">Recomendations</h3>
       {type === 'meals'
         ? <RecomendedDrinks recomendation={ recomendation } />
         : <RecomendedMeals recomendation={ recomendation } />}

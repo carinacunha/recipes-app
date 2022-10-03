@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/RecipeDetails.css';
 
 function VideoContainer({ recipe }) {
   const { strYoutube } = recipe;
@@ -7,7 +8,7 @@ function VideoContainer({ recipe }) {
 
   return (
     recipeVideoID ? (
-      <div>
+      <div className="video-container">
         <h2 className="video-recipe-title">Video</h2>
         <iframe
           className="recipe-video"
