@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import shareIcon from '../images/shareIcon.svg';
+import { Overlay, Tooltip } from 'react-bootstrap';
+import shareIcon from '../images/share.png';
+import '../styles/ShareButton.css';
 
 const copy = require('clipboard-copy');
 
 function ShareButton(props) {
   const [ulrCopy, setUrlCopy] = useState(false);
+  const target = useRef(null);
 
   const copyToClip = () => {
     const pathHome = window.location.href.split('/')[2];
@@ -17,7 +20,6 @@ function ShareButton(props) {
     } else {
       copy(`http://${pathHome}${pathname}`);
     }
-    setUrlCopy(true);
   };
 
   return (
@@ -25,13 +27,23 @@ function ShareButton(props) {
       <button
         type="button"
         data-testid="share-btn"
-        onClick={ copyToClip }
+        className="recipe-footer-btn"
+        onClick={ () => {
+          copyToClip();
+          setUrlCopy(!ulrCopy);
+        } }
+        ref={ target }
       >
-        <img src={ shareIcon } alt="Compartilhar" />
+        <img src={ shareIcon } alt="Compartilhar" className="share" />
       </button>
-      {ulrCopy && <p>Link copied!</p>}
+      <Overlay target={ target.current } show={ ulrCopy } placement="top">
+        {(p) => (
+          <Tooltip { ...p }>
+            Link Copied!
+          </Tooltip>
+        )}
+      </Overlay>
     </div>
-
   );
 }
 

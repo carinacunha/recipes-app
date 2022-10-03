@@ -22,7 +22,6 @@ let URL = '';
 
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
-  const [categoryWasClicked, setCategoryWasClicked] = useState('');
   const { currURL,
     barVisible,
     searchInputValue,
@@ -108,7 +107,6 @@ export default function Recipes() {
     });
 
     setLoading(false);
-    // setCategoryWasClicked('');
     setToggleFilter(true);
   };
 

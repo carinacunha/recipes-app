@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import heartFavorite from '../images/heart (1).png';
+import whiteFavorite from '../images/heart (2).png';
+import '../styles/FavoriteButton.css';
 
 function FavoriteButton(props) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -53,13 +54,15 @@ function FavoriteButton(props) {
     <button
       type="button"
       data-testid="favorite-btn"
+      className="recipe-footer-btn"
       onClick={ handleClick }
       label="favorite"
-      src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+      src={ isFavorite ? heartFavorite : whiteFavorite }
     >
       <img
-        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+        src={ isFavorite ? heartFavorite : whiteFavorite }
         alt="favorite"
+        className="heart"
       />
     </button>
   );

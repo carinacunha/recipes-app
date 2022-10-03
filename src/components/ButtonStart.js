@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/ButtonStart.css';
 
 function ButtonStart(props) {
   const { type, history, id } = props;
@@ -26,10 +27,10 @@ function ButtonStart(props) {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          style={ { position: 'fixed', bottom: 0 } }
           onClick={ changeRoute }
+          className="start-btn"
         >
-          { isStarted ? 'Continue Recipe' : 'Start Recipe' }
+          { isStarted ? 'continue' : 'start' }
         </button>)
   );
 }

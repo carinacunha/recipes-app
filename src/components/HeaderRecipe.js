@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import ingredientsIcon from '../images/icons8-ingredients-48 (1).png';
+import instructionsIcon from '../images/icons8-cooking-book-50 (1).png';
 import '../App.css';
+import '../styles/RecipeDetails.css';
 
 function findByType(type, recipe) {
   if (type === 'meals') {
@@ -18,7 +21,7 @@ function findByType(type, recipe) {
 }
 
 function HeaderRecipe(props) {
-  const { recipe, type } = props;
+  const { recipe, type, setShow } = props;
   const [renderRecipe, setRenderRecipe] = useState(findByType(type, recipe));
 
   useEffect(() => {
@@ -27,17 +30,34 @@ function HeaderRecipe(props) {
 
   return (
     renderRecipe.name ? (
-      <div>
-        <img
-          src={ renderRecipe.img }
-          alt={ renderRecipe.name }
-          data-testid="recipe-photo"
-          className="recipe-img"
-        />
-        <h1 data-testid="recipe-title">{renderRecipe.name}</h1>
-        <h2 data-testid="recipe-category">{renderRecipe.category}</h2>
+      <div className="recipe-header">
+        <div className="recipe-header-text">
+          <h1 data-testid="recipe-title">{renderRecipe.name}</h1>
+          <h3 data-testid="recipe-category">{renderRecipe.category}</h3>
+        </div>
+        <div className="recipe-header-buttons">
+          <input
+            type="image"
+            src={ ingredientsIcon }
+            alt="ingredients"
+            className="change-icon"
+            onClick={ () => {
+              setShow('ingredients');
+            } }
+          />
+          <input
+            type="image"
+            src={ instructionsIcon }
+            alt="instructions"
+            className="change-icon"
+            onClick={ () => {
+              setShow('instructions');
+            } }
+          />
+        </div>
+
       </div>
-    ) : <p>Carregando...</p>
+    ) : null
   );
 }
 
