@@ -8,6 +8,7 @@ import IngredientsContainer from '../components/IngredientsContainer';
 import InstructionsContainer from '../components/InstructionsContainer';
 import RecomendationsCard from '../components/RecomendationsCard';
 import VideoContainer from '../components/VideoContainer';
+import Footer from '../components/Footer';
 
 function RecipeDetails(props) {
   const [recipe, setRecipe] = useState({});
@@ -39,6 +40,7 @@ function RecipeDetails(props) {
       <ButtonStart history={ history } id={ id } type={ type } recipe={ recipe } />
       <FavoriteButton recipe={ recipe } id={ id } type={ type } />
       <ShareButton history={ history } />
+      <Footer />
     </div>
   );
 }

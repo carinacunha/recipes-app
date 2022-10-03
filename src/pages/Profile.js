@@ -14,6 +14,7 @@ function Profile(props) {
       <ProfileContainer
         history={ history }
       />
+      <Footer />
     </div>
   );
 }

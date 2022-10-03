@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import CardDoneRecipe from '../components/CardDoneRecipe';
+import '../css/DoneRecipes.css';
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -28,37 +29,49 @@ function DoneRecipes() {
   return (
     <div>
       <Header />
-      <button
-        data-testid="filter-by-all-btn"
-        name="all"
-        type="button"
-        onClick={ filterByType }
-      >
-        All
-      </button>
+      <section className="Filters">
+        <legend>
+          <input
+            className="Filter-btn-meal"
+            data-testid="filter-by-meal-btn"
+            name="meal"
+            type="button"
+            alt="botão"
+            onClick={ filterByType }
+          />
+          <p>Meals</p>
+        </legend>
+        <legend>
+          <input
+            className="Filter-drink"
+            data-testid="filter-by-drink-btn"
+            name="drink"
+            type="button"
+            alt="botão"
+            onClick={ filterByType }
+          />
+          <p>Drinks</p>
+        </legend>
+        <legend>
+          <input
+            className="Filter-btn-all"
+            data-testid="filter-by-all-btn"
+            name="all"
+            type="button"
+            alt="botão"
+            onClick={ filterByType }
+          />
+          <p>All</p>
+        </legend>
 
-      <button
-        data-testid="filter-by-meal-btn"
-        name="meal"
-        type="button"
-        onClick={ filterByType }
-      >
-        Meals
-      </button>
+      </section>
+      <section className="Card-Done">
+        {
+          doneRecipes?.map((recipe, index) => (
+            <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
 
-      <button
-        data-testid="filter-by-drink-btn"
-        name="drink"
-        type="button"
-        onClick={ filterByType }
-      >
-        Drinks
-      </button>
-
-      {
-        doneRecipes?.map((recipe, index) => (
-          <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
-      }
+        }
+      </section>
     </div>
   );
 }

@@ -14,6 +14,7 @@ function FavoritePageButton(props) {
 
   return (
     <button
+      className="favorite-btn"
       type="button"
       data-testid={ `${index}-horizontal-favorite-btn` }
       onClick={ handleClick }

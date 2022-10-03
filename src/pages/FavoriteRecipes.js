@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import CardFavoriteRecipe from '../components/CardFavoriteRecipe';
-// muito bom!
+import '../css/Favorites.css';
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState();
@@ -29,42 +29,52 @@ function FavoriteRecipes() {
   return (
     <div>
       <Header />
-      <button
-        data-testid="filter-by-all-btn"
-        name="all"
-        type="button"
-        onClick={ filterByType }
-      >
-        All
-      </button>
-
-      <button
-        data-testid="filter-by-meal-btn"
-        name="meal"
-        type="button"
-        onClick={ filterByType }
-      >
-        Meals
-      </button>
-
-      <button
-        data-testid="filter-by-drink-btn"
-        name="drink"
-        type="button"
-        onClick={ filterByType }
-      >
-        Drinks
-      </button>
-
-      {
-        favoriteRecipes?.map((recipe, index) => (
-          <CardFavoriteRecipe
-            recipe={ recipe }
-            key={ index }
-            index={ index }
-            setFavoriteRecipes={ setFavoriteRecipes }
-          />))
-      }
+      <section className="Filters-Favorites">
+        <legend>
+          <input
+            className="Filter-all"
+            data-testid="filter-by-all-btn"
+            name="all"
+            type="button"
+            alt="button"
+            onClick={ filterByType }
+          />
+          <p>All</p>
+        </legend>
+        <legend>
+          <input
+            className="Filter-meal"
+            data-testid="filter-by-meal-btn"
+            name="meal"
+            type="button"
+            alt="button"
+            onClick={ filterByType }
+          />
+          <p>Meals</p>
+        </legend>
+        <legend>
+          <input
+            className="Filter-drink"
+            data-testid="filter-by-drink-btn"
+            name="drink"
+            type="button"
+            alt="button"
+            onClick={ filterByType }
+          />
+          <p>Drinks</p>
+        </legend>
+      </section>
+      <section className="Card-Favorite">
+        {
+          favoriteRecipes?.map((recipe, index) => (
+            <CardFavoriteRecipe
+              recipe={ recipe }
+              key={ index }
+              index={ index }
+              setFavoriteRecipes={ setFavoriteRecipes }
+            />))
+        }
+      </section>
     </div>
   );
 }

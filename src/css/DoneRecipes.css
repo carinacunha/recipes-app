@@ -1,0 +1,78 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #F5F5F6;
+  font-family: Source Sans Pro , sans-serif;
+}
+
+.Filters {
+  display: flex;
+  justify-content: space-around;
+  height: 100px;
+  margin-top: 20px;
+}
+
+.Filter-btn-meal{
+  background: url('../images/icons8-jantar-50.png') no-repeat;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-position: center;
+  border-style: none;
+}
+.Filter-btn-drink{
+  background: url('../images/icons8-drinks-64.png') no-repeat;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-position: center;
+  border-style: none;
+}
+.Filter-btn-all{
+  background: url('../images/icons8-breakfast-64.png') no-repeat;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-position: center;
+  border-style: none;
+}
+
+.Card-Done {
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 25px;
+}
+
+legend {
+ text-align: center;
+}
+.Recipe-Name{
+  margin-top: 70px;
+}
+
+.textContent{
+  position: relative;
+  bottom: 70px;
+  border-color: solid red;
+}
+
+.share-btn{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 250px;
+}
+
+Link{
+  text-decoration: none;
+}
+
+.size-Image {
+  width: 300px;
+  height: 275px;
+}
