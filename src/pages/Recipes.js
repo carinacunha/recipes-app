@@ -7,6 +7,8 @@ import fetchApi from '../services/fetchApi';
 import LoadingComponent from '../components/LoadingComponent';
 import RecipesAppContext from '../context/RecipesAppContext';
 import SearchBar from '../components/SearchBar';
+import setURLFilter from '../services/setURLFilter';
+import fetchFilterAPI from '../services/fetchFilterAPI';
 
 const FOODS_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINKS_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -26,17 +28,15 @@ export default function Recipes() {
     searchInputValue,
     handleInputBar,
   } = useContext(RecipesAppContext);
-
   const [recipesState, setRecipesState] = useState({
     recipes: [],
     type: '',
   });
-
+  const [toggleFilter, setToggleFilter] = useState(true);
   const [recipeList, setRecipeList] = useState({
     list: [],
     type: '',
   });
-
   const { location: { pathname } } = useHistory();
 
   useEffect(() => {
@@ -85,50 +85,31 @@ export default function Recipes() {
   }, [pathname, currURL]); // eslint-disable-line
 
   const getByCategory = async ({ target: { name } }) => {
-    if (name === categoryWasClicked) {
-      setLoading(true);
-      const request = await fetchApi(URL);
-      const onlyTwelveFirst = request[currKey]?.filter((e, i) => i <= ONZE);
-      setRecipesState({
-        recipes: onlyTwelveFirst,
-        type: currKey,
-      });
+    const URL_CATEGORY = setURLFilter(
+      pathname,
+      URL_FILTER_DRINKS,
+      URL_FILTER_FOODS,
+      name,
+    );
 
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    let URL_CATEGORY = '';
-    switch (pathname) {
-    case '/drinks': {
-      URL_CATEGORY = URL_FILTER_DRINKS + name;
-      break;
-    }
-    default: {
-      URL_CATEGORY = URL_FILTER_FOODS + name;
-    }
-    }
-
-    const data = await fetchApi(URL_CATEGORY);
-    const onlyTwelveFirst = data[currKey]?.filter((e, i) => i <= ONZE);
-    setRecipesState({ ...recipesState, recipes: onlyTwelveFirst });
+    const onlyTwelveFirst2 = await fetchFilterAPI(URL_CATEGORY, currKey);
+    setRecipesState({ ...recipesState, recipes: onlyTwelveFirst2 });
     setLoading(false);
-    setCategoryWasClicked(name);
+    setToggleFilter(false);
   };
 
   const clearFilters = async () => {
     setLoading(true);
 
-    const request = await fetchApi(URL);
-    const onlyTwelveFirst = request[currKey].filter((e, i) => i <= ONZE);
+    const onlyTwelveFirst = await fetchFilterAPI(URL, currKey);
     setRecipesState({
       recipes: onlyTwelveFirst,
       type: currKey,
     });
 
     setLoading(false);
-    setCategoryWasClicked('');
+    // setCategoryWasClicked('');
+    setToggleFilter(true);
   };
 
   return (
@@ -156,7 +137,7 @@ export default function Recipes() {
                 name={ strCategory }
                 key={ strCategory }
                 type="button"
-                onClick={ getByCategory }
+                onClick={ toggleFilter ? getByCategory : clearFilters }
                 data-testid={ `${strCategory}-category-filter` }
               >
                 {strCategory}

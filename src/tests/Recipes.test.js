@@ -89,4 +89,19 @@ describe('Implementa casos de testes de Recipe.js', () => {
 
     await findCards(cardsQuantity, 12);
   });
+
+  test('Testa se é possível retirar o filtro quando o botão all é clicado', async () => {
+    renderWithRouter(<App />, { initialEntries: ['/drinks'] });
+
+    const getLoading = screen.getByText(/Carregando.../i);
+    expect(getLoading).toBeInTheDocument();
+
+    await waitFor(() => {
+      const allCategory = screen.getByTestId('All-category-filter');
+      userEvent.click(allCategory);
+      expect(getLoading).toBeInTheDocument();
+      expect(screen.getByTestId(RECIPE_PHOTO)).toBeInTheDocument();
+      expect(getLoading).not.toBeInTheDocument();
+    });
+  });
 });
