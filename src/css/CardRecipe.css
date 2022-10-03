@@ -1,0 +1,41 @@
+:root {
+
+  --red: rgb(253, 46, 0);
+
+  --white: rgb(245, 245, 246);
+}
+
+.card {
+  align-items: flex-end;
+  border-radius: 5px;
+  display: flex;
+  height: 275px;
+  margin: 10px;
+  width: 325px;
+}
+
+.gradient {
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.816), rgba(255, 255, 255, 0));
+  border-radius: 5px;
+  height: 50%;
+  position: relative;
+  width: 100%;
+}
+
+.gradient .name__recipe {
+  bottom: 40px;
+  color: var(--red);
+  font-size: 25px;
+  font-weight: 700;
+  left: 10px;
+  position: absolute;
+}
+
+.gradient .category__recipe {
+  bottom: 15px;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 500;
+  left: 10px;
+  position: absolute;
+}

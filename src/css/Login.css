@@ -5,12 +5,6 @@
   --white: rgb(245, 245, 246);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .login-screen {
   align-items: center;
   background-color: var(--white);
@@ -27,9 +21,7 @@
   align-items: center;
   background-color: white;
   border-radius: 20px;
-
-  /* box-shadow: inset -1px -2px 4px rgba(0, 0, 0, 0.334); */
-  box-shadow: 20px 20px 60px #bebebe , -20px -20px 60px #fff;
+  box-shadow: 20px 20px 60px #bebebe , -20px -20px 60px white;
   display: flex;
   flex-direction: column;
   height: 246px;
@@ -38,7 +30,7 @@
   width: 337px;
 }
 
-.login-form input, button {
+.login-form input, .login-form button {
   border-radius: 5px;
   margin: 5px;
   padding: 12px;
