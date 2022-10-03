@@ -1,0 +1,45 @@
+.icon__category {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon__category button {
+  background-color: white;
+  border: none;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+.icon__category p {
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.icon__category button img {
+  width: 40px;
+}
+
+.icons__category .live__scroll {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.icons__category .live__scroll .row {
+  display: block;
+}
+
+.icons__category .live__scroll .live__scroll--box {
+  display: inline-block;
+  float: none;
+  padding: 15px;
+}
+
+.cards__recipes {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 90%;
+}

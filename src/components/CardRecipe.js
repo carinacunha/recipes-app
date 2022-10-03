@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/CardRecipe.css';
 
 export default function CardRecipe({ recipe, index, type }) {
   const findByType = (typeFood) => {
@@ -20,14 +21,30 @@ export default function CardRecipe({ recipe, index, type }) {
 
   return (
     <Link to={ `/${type}/${recipe[findByType(type)[2]]}` }>
-      <div data-testid={ `${index}-recipe-card` }>
-        <img
+      <div
+        className="card"
+        data-testid={ `${index}-recipe-card` }
+        style={ {
+          background: `url(${recipe[findByType(type)[0]]})`,
+          backgroundSize: 'cover',
+        } }
+      >
+        <div className="gradient">
+          <p
+            className="name__recipe"
+            data-testid={ `${index}-card-name` }
+          >
+            {recipe[findByType(type)[1]]}
+
+          </p>
+          <p className="category__recipe">Lorem</p>
+        </div>
+        {/* <img
           src={ recipe[findByType(type)[0]] }
           alt={ recipe[findByType(type)[1]] }
           width="200px"
           data-testid={ `${index}-card-img` }
-        />
-        <p data-testid={ `${index}-card-name` }>{recipe[findByType(type)[1]]}</p>
+        /> */}
       </div>
     </Link>
   );
