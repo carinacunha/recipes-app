@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import heartFavorite from '../images/heart (1).png';
-import '../styles/FavoriteButton.css';
+import '../css/FavoriteButton.css';
 
 function FavoritePageButton(props) {
   const { id, index, setFavoriteRecipes } = props;

@@ -34,7 +34,7 @@ function RecomendationsCard(props) {
   }, []);
 
   return (
-    <div className="live__scroll">
+    <div className="live__scroll carrousel-recipe">
       {type === 'meals'
         ? <RecomendedDrinks recomendation={ recomendation } />
         : <RecomendedMeals recomendation={ recomendation } />}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/ButtonStart.css';
+import '../css/ButtonStart.css';
 
 function ButtonStart(props) {
   const { type, history, id } = props;

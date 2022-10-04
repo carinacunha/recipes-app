@@ -38,6 +38,10 @@
   font-style: italic;
 }
 
+.carrousel-recipe {
+  background-color: white;
+}
+
 .recipe-header {
   background-color: white;
   display: flex;
@@ -58,16 +62,58 @@
 }
 
 .ingredients-container {
+  font-size: 18px;
   padding: 10px;
 }
 
+.ingredients-inprogress {
+  background-color: white;
+  border-radius: 5px;
+  font-family: Quicksand , sans-serif;
+  height: fit-content;
+  justify-content: center;
+  padding: 0 10px 10px;
+  width: 90%;
+}
+
+.ingredients-inprogress h1, h2 {
+  color: #fd2e00;
+}
+
+.ingredients-inprogress h3 {
+  font-style: italic;
+}
+
+.ingredients-checkboxes {
+  font-size: 18px;
+  height: fit-content;
+  list-style-type: none;
+}
+
+.ingredient {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0;
+}
+
 .instructions-container {
+  background-color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  gap: 10px;
+  padding: 10px;
+  width: 90%;
+}
+
+.instructions {
+  margin-bottom: 5px;
+  margin-top: 10px;
   padding: 10px;
 }
 
 .video-container {
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
 }
 
 .video-recipe-title {
@@ -88,9 +134,11 @@
   bottom: 0;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 10px;
+  justify-content: space-around;
+  margin: 0 10px 10px;
   position: fixed;
   right: 0;
   text-align: center;
+  width: calc(100%/1.6);
 }
+

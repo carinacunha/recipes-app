@@ -55,21 +55,31 @@ function IngredientsCheckboxContainer(props) {
   };
 
   return (
-    renderIngredients.length > 0 ? renderIngredients.map((ingredient, i) => (
-      <label
-        key={ i }
-        htmlFor={ ingredient }
-        data-testid={ `${i}-ingredient-step` }
-      >
-        <input
-          type="checkbox"
-          id={ ingredient }
-          onChange={ (event) => onChange(event, ingredient, setUsedIngredients, typeThe) }
-          checked={ usedIngredients.some((index) => index === ingredient) }
-        />
-        {ingredient}
-      </label>
-    )) : <p>Carregando...</p>
+    <ul className="ingredients-checkboxes">
+      {renderIngredients.length > 0 ? renderIngredients.map((ingredient, i) => (
+        <li key={ i }>
+          <label
+            key={ i }
+            htmlFor={ ingredient }
+            data-testid={ `${i}-ingredient-step` }
+            className="ingredient"
+          >
+            <input
+              type="checkbox"
+              id={ ingredient }
+              onChange={ (event) => onChange(
+                event,
+                ingredient,
+                setUsedIngredients,
+                typeThe,
+              ) }
+              checked={ usedIngredients.some((index) => index === ingredient) }
+            />
+            {ingredient}
+          </label>
+        </li>
+      )) : null}
+    </ul>
   );
 }
 
