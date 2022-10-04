@@ -10,7 +10,7 @@ export default function SearchBar() {
   const {
     handleInputRadio, searchRadio, searchInputValue, searchAPIcall,
     setSearchAPIcall, setCurrURL, setSearchInputValue, handleInputBar,
-  } = useContext(RecipesAppContext);
+    barVisible } = useContext(RecipesAppContext);
 
   let URL;
 
@@ -64,20 +64,23 @@ export default function SearchBar() {
 
   verifyRadiosMeals();
 
+  const animateVisibility = barVisible ? { y: 5 } : { y: -80,
+    transition: {
+      type: 'spring',
+      stiffness: 20,
+      restDelta: 2,
+    } };
+
   return (
     <motion.form
       className="search__bar"
-      initial={ { y: -50,
+      initial={ { y: -80,
         transition: {
           type: 'spring',
           stiffness: 20,
           restDelta: 2,
         } } }
-      animate={ { y: 5 } }
-      exit={ { y: -50,
-        transition: {
-          duration: 0.5,
-        } } }
+      animate={ animateVisibility }
     >
       <input
         name="Value"
