@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,79 +6,83 @@
 }
 
 body {
-  background-color: #F5F5F6;
+  background-color: #f5f5f6;
   font-family: Source Sans Pro , sans-serif;
 }
 
 .Filters-Favorites {
   display: flex;
-  justify-content: space-around;
   height: 100px;
+  justify-content: space-around;
   margin-top: 20px;
 }
 
-.Filter-meal{
+.Filter-meal {
   background: url('../images/icons8-jantar-50.png') no-repeat;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
   background-position: center;
+  border-radius: 50%;
   border-style: none;
+  height: 60px;
+  width: 60px;
 }
-.Filter-drink{
+
+.Filter-drink {
   background: url('../images/icons8-drinks-64.png') no-repeat;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
   background-position: center;
+  border-radius: 50%;
   border-style: none;
+  height: 60px;
+  width: 60px;
 }
-.Filter-all{
+
+.Filter-all {
   background: url('../images/icons8-breakfast-64.png') no-repeat;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
   background-position: center;
+  border-radius: 50%;
   border-style: none;
+  height: 60px;
+  width: 60px;
 }
 
 .Card-Favorite {
-  position: absolute;
-  margin-top: 50px;
   margin-left: 25px;
+  margin-top: 50px;
+  position: absolute;
 }
 
 legend {
- text-align: center;
+  text-align: center;
 }
-.Recipe-Name{
+
+.Recipe-Name {
   margin-top: 70px;
 }
 
-.favorite-btn{
-  width: 50px;
-  height: 50px;
+.favorite-btn {
   border-radius: 50%;
+  height: 50px;
+  margin-left: 125px;
+  margin-top: 45px;
+  width: 50px;
 }
 
-.textContent{
-  position: relative;
-  bottom: 40px;
+.textContent {
   border-color: solid red;
+  bottom: 40px;
+  position: relative;
 }
 
-.fav-image{
-  width: 300px;
+.fav-image {
   height: 275px;
+  width: 300px;
 }
 
-.share-btn{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-left: 250px;
+.share-btn {
+  height: 40px;
+  margin-top: 0;
+  width: 40px;
 }
 
-Link{
+link {
   text-decoration: none;
 }
