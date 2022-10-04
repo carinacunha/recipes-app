@@ -58,12 +58,15 @@ function CardFavoriteRecipe({ recipe, index, setFavoriteRecipes }) {
       >
         { recipe.doneDate }
       </h3>
-      <FavoritePageButton
-        index={ index }
-        id={ id }
-        setFavoriteRecipes={ setFavoriteRecipes }
-      />
-      <ShareButtonDone recipe={ recipe } index={ index } />
+      <section className="buttons">
+        <FavoritePageButton
+          index={ index }
+          id={ id }
+          setFavoriteRecipes={ setFavoriteRecipes }
+        />
+        <ShareButtonDone recipe={ recipe } index={ index } />
+      </section>
+
     </div>
   );
 }
