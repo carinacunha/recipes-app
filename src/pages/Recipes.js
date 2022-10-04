@@ -85,6 +85,7 @@ export default function Recipes() {
   }, [pathname, currURL]); // eslint-disable-line
 
   const getByCategory = async ({ target: { name } }) => {
+    console.log(name);
     const URL_CATEGORY = setURLFilter(
       pathname,
       URL_FILTER_DRINKS,
@@ -125,6 +126,7 @@ export default function Recipes() {
           <section className="live__scroll icons__category">
             { recipeList.list?.length > 0 ? recipeList.list.map(({ strCategory }) => (
               <label
+                name={ strCategory }
                 key={ strCategory }
                 htmlFor={ strCategory }
                 className="live__scroll--box icon__category"

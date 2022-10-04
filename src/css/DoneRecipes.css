@@ -57,24 +57,65 @@ legend {
   margin-top: 70px;
 }
 
-.textContent {
-  border-color: solid red;
-  bottom: 70px;
-  position: relative;
-}
-
 .share-btn {
-  border-radius: 50%;
   height: 50px;
-  margin-left: 250px;
+  margin: 10px auto;
   width: 50px;
 }
 
+.share-btn button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+.share-btn button img {
+  width: 25px;
+}
+
 link {
+  color: rgb(12, 12, 12);
   text-decoration: none;
 }
 
 .size-Image {
   height: 275px;
   width: 300px;
+}
+
+.done .gradient .name__recipe {
+  bottom: 75px;
+  color: var(--red);
+  font-size: 25px;
+  font-weight: 700;
+  left: 10px;
+  position: absolute;
+}
+
+.done .gradient .category__recipe {
+  bottom: 55px;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 500;
+  left: 10px;
+  position: absolute;
+}
+
+.done .gradient .date__recipe {
+  bottom: 32px;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 500;
+  left: 10px;
+  position: absolute;
+}
+
+.done .gradient .tag__recipe {
+  bottom: 15px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  left: 10px;
+  position: absolute;
 }

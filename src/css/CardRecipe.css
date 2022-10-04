@@ -7,6 +7,7 @@
 
 .card {
   align-items: flex-end;
+  background-size: cover;
   border-radius: 5px;
   display: flex;
   height: 275px;
@@ -39,3 +40,4 @@
   left: 10px;
   position: absolute;
 }
+
