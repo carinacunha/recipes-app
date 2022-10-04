@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import renderingIngredients from '../services/renderingIgredients';
+import '../css/ButtonStart.css';
 
 function FinishRecipeButton(props) {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -48,10 +49,11 @@ function FinishRecipeButton(props) {
       <button
         type="button"
         data-testid="finish-recipe-btn"
+        className="finish-btn"
         disabled={ isDisabled }
         onClick={ handleClick }
       >
-        Finish Recipe
+        finish
       </button>
     </div>
   );

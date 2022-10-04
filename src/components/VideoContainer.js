@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/RecipeDetails.css';
+import '../css/Recipe.css';
 
 function VideoContainer({ recipe }) {
   const { strYoutube } = recipe;

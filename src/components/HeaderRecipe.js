@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ingredientsIcon from '../images/icons8-ingredients-48 (1).png';
 import instructionsIcon from '../images/icons8-cooking-book-50 (1).png';
 import '../App.css';
-import '../styles/RecipeDetails.css';
+import '../css/Recipe.css';
 
 function findByType(type, recipe) {
   if (type === 'meals') {
@@ -35,27 +35,29 @@ function HeaderRecipe(props) {
           <h1 data-testid="recipe-title">{renderRecipe.name}</h1>
           <h3 data-testid="recipe-category">{renderRecipe.category}</h3>
         </div>
-        <div className="recipe-header-buttons">
-          <input
-            type="image"
-            src={ ingredientsIcon }
-            alt="ingredients"
-            className="change-icon"
-            onClick={ () => {
-              setShow('ingredients');
-            } }
-          />
-          <input
-            type="image"
-            src={ instructionsIcon }
-            alt="instructions"
-            className="change-icon"
-            onClick={ () => {
-              setShow('instructions');
-            } }
-          />
-        </div>
+        {setShow !== undefined ? (
+          <div className="recipe-header-buttons">
+            <input
+              type="image"
+              src={ ingredientsIcon }
+              alt="ingredients"
+              className="change-icon"
+              onClick={ () => {
+                setShow('ingredients');
+              } }
+            />
+            <input
+              type="image"
+              src={ instructionsIcon }
+              alt="instructions"
+              className="change-icon"
+              onClick={ () => {
+                setShow('instructions');
+              } }
+            />
+          </div>
 
+        ) : null }
       </div>
     ) : null
   );

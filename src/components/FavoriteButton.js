@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import heartFavorite from '../images/heart (1).png';
 import whiteFavorite from '../images/heart (2).png';
-import '../styles/FavoriteButton.css';
+import '../css/FavoriteButton.css';
 
 function FavoriteButton(props) {
   const [isFavorite, setIsFavorite] = useState(false);

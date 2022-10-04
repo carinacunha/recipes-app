@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 
-import '../styles/Footer.css';
+import '../css/Footer.css';
 import RecipesAppContext from '../context/RecipesAppContext';
 
 function Footer() {
