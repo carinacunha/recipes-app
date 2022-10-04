@@ -21,7 +21,6 @@ function Header() {
         onClick={ () => history.push('/profile') }
       />
       <h1
-        style={ { color: 'red', fontSize: 35 } }
         className="title"
         data-testid="page-title"
       >

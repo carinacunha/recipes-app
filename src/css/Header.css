@@ -15,16 +15,11 @@ body {
   background-color: var(--white);
   color: var(--red);
   display: flex;
-  font-size: 22px;
+  font-size: 20px;
   justify-content: space-between;
-  line-height: 40px;
   padding: 8px 30px;
 }
 
 .header .profile__icon, .header .search__icon {
   height: 25px;
-}
-
-.title{
-  text-align: center;
 }

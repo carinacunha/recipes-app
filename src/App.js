@@ -10,7 +10,7 @@ import RecipeDetails from './pages/RecipeDetails';
 import RecipeInProgress from './pages/RecipeInProgress';
 import NotFound from './pages/NotFound';
 import Recipes from './pages/Recipes';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         <Route exact path="/loading" component={ Loading } />
         <Route component={ NotFound } />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </RecipesAppProvider>
   );
 }

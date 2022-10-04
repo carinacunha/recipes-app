@@ -38,7 +38,7 @@ function RecipeDetails(props) {
 
   return (
     <section>
-      <HeaderRecipe type={ type } recipe={ recipe } />
+      {/* <HeaderRecipe type={ type } recipe={ recipe } />
       <IngredientsContainer recipe={ recipe } />
       <InstructionsContainer recipe={ recipe } />
       {type === 'meals' ? <VideoContainer recipe={ recipe } /> : null}
@@ -46,7 +46,7 @@ function RecipeDetails(props) {
       <ButtonStart history={ history } id={ id } type={ type } recipe={ recipe } />
       <FavoriteButton recipe={ recipe } id={ id } type={ type } />
       <ShareButton history={ history } />
-      <Footer />
+      <Footer /> */}
       { loading ? <LoadingComponent />
         : (
           <div>
@@ -72,6 +72,7 @@ function RecipeDetails(props) {
               <FavoriteButton recipe={ recipe } id={ id } type={ type } />
               <ShareButton history={ history } />
             </div>
+            <Footer />
           </div>)}
     </section>
   );
