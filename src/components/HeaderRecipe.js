@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ingredientsIcon from '../images/icons8-ingredients-48 (1).png';
-import instructionsIcon from '../images/icons8-cooking-book-50 (1).png';
+// import ingredientsIcon from '../images/icons8-ingredients-48 (1).png';
+// import instructionsIcon from '../images/icons8-cooking-book-50 (1).png';
+import iconsIngredientes from '../images/iconsIngredientes.png';
+import iconsLista from '../images/iconsLista.png';
 import '../App.css';
 import '../css/Recipe.css';
 
@@ -39,7 +41,7 @@ function HeaderRecipe(props) {
           <div className="recipe-header-buttons">
             <input
               type="image"
-              src={ ingredientsIcon }
+              src={ iconsIngredientes }
               alt="ingredients"
               className="change-icon"
               onClick={ () => {
@@ -48,7 +50,7 @@ function HeaderRecipe(props) {
             />
             <input
               type="image"
-              src={ instructionsIcon }
+              src={ iconsLista }
               alt="instructions"
               className="change-icon"
               onClick={ () => {

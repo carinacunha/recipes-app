@@ -11,12 +11,15 @@ body {
 
 
 .header {
+  align-items: center;
   background-color: var(--white);
+  color: var(--red);
   display: flex;
+  font-size: 20px;
   justify-content: space-between;
-  padding: 8px 10px;
+  padding: 8px 30px;
 }
 
-.title {
-  text-align: center;
+.header .profile__icon, .header .search__icon {
+  height: 25px;
 }

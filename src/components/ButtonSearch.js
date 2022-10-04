@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import RecipesAppContext from '../context/RecipesAppContext';
-import searchIcon from '../images/searchIcon.svg';
+import iconsPesquisarRed from '../images/iconsPesquisarRed.png';
 
 function ButtonSearch() {
   const {
@@ -9,15 +9,14 @@ function ButtonSearch() {
   } = useContext(RecipesAppContext);
 
   return (
-    <div>
-      <input
-        data-testid="search-top-btn"
-        src={ searchIcon }
-        alt="search icon"
-        type="image"
-        onClick={ () => setBarVisible(!barVisible) }
-      />
-    </div>
+    <input
+      className="search__icon"
+      data-testid="search-top-btn"
+      src={ iconsPesquisarRed }
+      alt="search icon"
+      type="image"
+      onClick={ () => setBarVisible(!barVisible) }
+    />
   );
 }
 

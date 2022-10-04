@@ -9,6 +9,7 @@ import FinishRecipeButton from '../components/FinishRecipeButton';
 import IngredientsCheckboxContainer from '../components/IgredientsCheckboxContainer';
 import '../css/Recipe.css';
 import LoadingComponent from '../components/LoadingComponent';
+import Footer from '../components/Footer';
 
 function RecipeInProgress(props) {
   const [recipe, setRecipe] = useState({});
@@ -70,6 +71,7 @@ function RecipeInProgress(props) {
           <FavoriteButton recipe={ recipe } id={ id } type={ type } />
           <ShareButton history={ history } />
         </div>
+        <Footer />
       </div>
     )
   );
