@@ -115,6 +115,18 @@ export default function Recipes() {
     setToggleFilter(true);
   };
 
+  const renderRecipes = (recipes) => (
+    recipes
+      .recipes?.length > 0 ? recipes.recipes.map((recipe, i) => (
+        <CardRecipe
+          key={ i }
+          type={ recipes.type }
+          recipe={ recipe }
+          index={ i }
+        />
+      )) : <span>Sem receitas para essa categoria</span>
+  );
+
   return (
     <main>
       <Header />
@@ -167,15 +179,7 @@ export default function Recipes() {
             exit={ { opacity: 0 } }
           >
             {searchLoading ? <LoadingComponent />
-              : recipesState
-                .recipes?.length > 0 ? recipesState.recipes.map((recipe, i) => (
-                  <CardRecipe
-                    key={ i }
-                    type={ recipesState.type }
-                    recipe={ recipe }
-                    index={ i }
-                  />
-                )) : <span>Sem receitas para essa categoria</span> }
+              : renderRecipes(recipesState)}
           </motion.section>
         </motion.section>
       ) }
