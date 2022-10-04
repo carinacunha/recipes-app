@@ -7,7 +7,6 @@ function CardDoneRecipe({ recipe, index }) {
   const { type, id } = recipe;
   const url = type === 'meal' ? `/meals/${id}`
     : `/drinks/${id}`;
-  console.log(recipe);
   return (
 
     <div>
