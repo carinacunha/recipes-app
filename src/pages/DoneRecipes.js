@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import CardDoneRecipe from '../components/CardDoneRecipe';
 import '../css/DoneRecipes.css';
@@ -29,7 +30,12 @@ function DoneRecipes() {
   return (
     <div>
       <Header />
-      <section className="Filters">
+      <motion.section
+        className="Filters"
+        initial={ { opacity: 0 } }
+        animate={ { opacity: 1 } }
+        exit={ { opacity: 0 } }
+      >
         <legend>
           <input
             className="Filter-btn-meal"
@@ -63,15 +69,18 @@ function DoneRecipes() {
           />
           <p>All</p>
         </legend>
-
-      </section>
-      <section className="cards__recipes done">
+      </motion.section>
+      <motion.section
+        className="Card-Done"
+        initial={ { opacity: 0 } }
+        animate={ { opacity: 1 } }
+        exit={ { opacity: 0 } }
+      >
         {
           doneRecipes?.map((recipe, index) => (
             <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
-
         }
-      </section>
+      </motion.section>
     </div>
   );
 }

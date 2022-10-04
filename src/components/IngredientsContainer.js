@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import '../css/Recipe.css';
 
@@ -28,7 +29,12 @@ function IngredientsContainer(props) {
   return (
     renderIngredients.length > 0
       ? (
-        <div className="ingredients-container">
+        <motion.div
+          className="ingredients-container"
+          initial={ { x: -100 } }
+          animate={ { x: 0 } }
+          exit={ { x: 100 } }
+        >
           <h2 className="instructions-title">Ingredients</h2>
           {renderIngredients.map((ingredient, i) => (
             <li
@@ -38,7 +44,7 @@ function IngredientsContainer(props) {
               {ingredient}
             </li>
           ))}
-        </div>)
+        </motion.div>)
       : null
   );
 }

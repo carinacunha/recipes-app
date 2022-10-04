@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import md5 from 'crypto-js/md5';
 import '../css/Profile.css';
-import profile from '../images/profile.png';
 
 function ProfileContainer(props) {
   const [email, setEmail] = useState('');
+  const [gravatarUrl, setGravatarUrl] = useState('');
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const hash = md5(user.email).toString();
     if (user) {
       setEmail(user.email);
+      setGravatarUrl(`https://www.gravatar.com/avatar/${hash}`);
     } else {
       setEmail('');
+      setGravatarUrl('https://www.gravatar.com/avatar/');
     }
   }, []);
 
@@ -31,8 +36,13 @@ function ProfileContainer(props) {
   };
 
   return (
-    <div className="profile-container">
-      <img src={ profile } alt="profile" className="profile-image" />
+    <motion.div
+      className="profile-container"
+      initial={ { opacity: 0 } }
+      animate={ { opacity: 1 } }
+      exit={ { opacity: 0 } }
+    >
+      <img src={ gravatarUrl } alt="profile" className="profile-image" />
       <p data-testid="profile-email" className="profile-email">{email}</p>
       <div className="profile-buttons">
         <button
@@ -60,7 +70,7 @@ function ProfileContainer(props) {
           Logout
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

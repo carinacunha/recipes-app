@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import RecipesAppContext from '../context/RecipesAppContext';
 import fetchApi from '../services/fetchApi';
@@ -9,7 +10,7 @@ export default function SearchBar() {
   const {
     handleInputRadio, searchRadio, searchInputValue, searchAPIcall,
     setSearchAPIcall, setCurrURL, setSearchInputValue, handleInputBar,
-  } = useContext(RecipesAppContext);
+    barVisible } = useContext(RecipesAppContext);
 
   let URL;
 
@@ -63,8 +64,24 @@ export default function SearchBar() {
 
   verifyRadiosMeals();
 
+  const animateVisibility = barVisible ? { y: 5 } : { y: -80,
+    transition: {
+      type: 'spring',
+      stiffness: 20,
+      restDelta: 2,
+    } };
+
   return (
-    <form className="search__bar">
+    <motion.form
+      className="search__bar"
+      initial={ { y: -80,
+        transition: {
+          type: 'spring',
+          stiffness: 20,
+          restDelta: 2,
+        } } }
+      animate={ animateVisibility }
+    >
       <input
         name="Value"
         data-testid="search-input"
@@ -119,6 +136,6 @@ export default function SearchBar() {
       >
         Search
       </button>
-    </form>
+    </motion.form>
   );
 }

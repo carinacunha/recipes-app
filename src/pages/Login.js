@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import loginThumb2 from '../images/loginThumb2.png';
 import '../css/Login.css';
@@ -44,7 +45,12 @@ function Login(props) {
   };
 
   return (
-    <section className="login-screen">
+    <motion.section
+      className="login-screen"
+      initial={ { opacity: 0 } }
+      animate={ { opacity: 1 } }
+      exit={ { opacity: 0 } }
+    >
       <section>
         <img src={ loginThumb2 } alt="meals and wine" />
       </section>
@@ -73,7 +79,7 @@ function Login(props) {
           Entrar
         </button>
       </form>
-    </section>
+    </motion.section>
   );
 }
 
