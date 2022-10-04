@@ -11,13 +11,7 @@ function CardDoneRecipe({ recipe, index }) {
   return (
 
     <div>
-      {/* <img
-          className="size-Image"
-          width="270px"
-          data-testid={ `${index}-horizontal-image` }
-          src={ recipe.image }
-          alt="imagem not found"
-        /> */}
+
       <Link to={ url }>
         <div
           className="card"

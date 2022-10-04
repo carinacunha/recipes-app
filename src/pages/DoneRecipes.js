@@ -69,16 +69,18 @@ function DoneRecipes() {
           />
           <p>All</p>
         </legend>
+
       </motion.section>
       <motion.section
-        className="Card-Done"
         initial={ { opacity: 0 } }
         animate={ { opacity: 1 } }
         exit={ { opacity: 0 } }
+        className="cards__recipes done"
       >
         {
           doneRecipes?.map((recipe, index) => (
             <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
+
         }
       </motion.section>
     </div>
