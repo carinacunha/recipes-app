@@ -13,30 +13,41 @@ function CardFavoriteRecipe({ recipe, index, setFavoriteRecipes }) {
     <div>
       <Link to={ url }>
         <img
+          className="fav-image"
           width="270px"
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt="imagem not found"
         />
       </Link>
-      {
-        recipe.type === 'meal' ? (
-          <h3
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { `${recipe.nationality} - ${recipe.category}` }
-          </h3>
-        ) : (
-          <h3
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { recipe.alcoholicOrNot }
-          </h3>
-        )
-      }
+      <div
+        styles={ { backgroundImage: `url(${recipe.image})`,
+          background: 'linear-gradient(360deg, #0C0C0C 0%, rgba(12, 12, 12, 0) 40%)',
+        } }
+        className="textContent"
+      >
+        {
+          recipe.type === 'meal' ? (
+            <h3
+              style={ { color: 'red', fontSize: 25 } }
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              { `${recipe.nationality} - ${recipe.category}` }
+            </h3>
+          ) : (
+            <h3
+              style={ { color: 'red', fontSize: 25 } }
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              { recipe.alcoholicOrNot }
+            </h3>
+          )
+        }
+      </div>
       <Link to={ url }>
         <h3
           data-testid={ `${index}-horizontal-name` }
+          style={ { color: 'red', fontSize: 32 } }
         >
           { recipe.name }
         </h3>
@@ -47,12 +58,12 @@ function CardFavoriteRecipe({ recipe, index, setFavoriteRecipes }) {
       >
         { recipe.doneDate }
       </h3>
-      <ShareButtonDone recipe={ recipe } index={ index } />
       <FavoritePageButton
         index={ index }
         id={ id }
         setFavoriteRecipes={ setFavoriteRecipes }
       />
+      <ShareButtonDone recipe={ recipe } index={ index } />
     </div>
   );
 }

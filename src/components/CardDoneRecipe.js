@@ -7,62 +7,69 @@ function CardDoneRecipe({ recipe, index }) {
   const { type, id } = recipe;
   const url = type === 'meal' ? `/meals/${id}`
     : `/drinks/${id}`;
-  console.log(recipe);
   return (
 
     <div>
       <Link to={ url }>
         <img
+          className="size-Image"
           width="270px"
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt="imagem not found"
         />
       </Link>
-      {
-        recipe.type === 'meal' ? (
-          <h3
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { `${recipe.nationality} - ${recipe.category}` }
-          </h3>
-        ) : (
-          <h3
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { recipe.alcoholicOrNot }
-          </h3>
-        )
-      }
-      <Link to={ url }>
-        <h3
-          data-testid={ `${index}-horizontal-name` }
-        >
-          { recipe.name }
-        </h3>
-      </Link>
-
-      <h3
-        data-testid={ `${index}-horizontal-done-date` }
+      <div
+        styles={ { backgroundImage: `url(${recipe.image})`,
+          background: 'linear-gradient(360deg, #0C0C0C 0%, rgba(12, 12, 12, 0) 40%)',
+        } }
+        className="textContent"
       >
-        { recipe.doneDate }
-      </h3>
+        <Link to={ url }>
+          <h3
+            style={ { color: 'red', fontSize: 26 } }
+            data-testid={ `${index}-horizontal-name` }
+          >
+            {recipe.name}
+          </h3>
+          <br />
+        </Link>
+        {
+          recipe.type === 'meal' ? (
+            <h3
+              style={ { fontSize: 15 } }
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              {`${recipe.nationality} - ${recipe.category}`}
+            </h3>
+          ) : (
+            <h3
+              style={ { fontSize: 15 } }
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              {recipe.alcoholicOrNot}
+            </h3>
+          )
+        }
 
-      <ShareButtonDone recipe={ recipe } index={ index } />
-
-      <section>
+        <h3
+          style={ { color: '#D3D3D3' } }
+          data-testid={ `${index}-horizontal-done-date` }
+        >
+          {recipe.doneDate}
+        </h3>
         {
           recipe.tags?.map((tag) => (
-            <p
+            <h3
               key={ tag }
               data-testid={ `${index}-${tag}-horizontal-tag` }
             >
-              { tag }
-            </p>
+              {tag}
+            </h3>
           ))
         }
-      </section>
-
+      </div>
+      <ShareButtonDone recipe={ recipe } index={ index } />
     </div>
 
   );

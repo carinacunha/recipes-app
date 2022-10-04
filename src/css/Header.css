@@ -16,3 +16,7 @@ body {
   justify-content: space-between;
   padding: 8px 10px;
 }
+
+.title{
+  text-align: center;
+}

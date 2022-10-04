@@ -36,6 +36,17 @@ function RecipeDetails(props) {
   }, []);
 
   return (
+    <div>
+      <HeaderRecipe type={ type } recipe={ recipe } />
+      <IngredientsContainer recipe={ recipe } />
+      <InstructionsContainer recipe={ recipe } />
+      {type === 'meals' ? <VideoContainer recipe={ recipe } /> : null}
+      <RecomendationsCard type={ type } id={ id } />
+      <ButtonStart history={ history } id={ id } type={ type } recipe={ recipe } />
+      <FavoriteButton recipe={ recipe } id={ id } type={ type } />
+      <ShareButton history={ history } />
+      <Footer />
+    </div>
     loading ? <LoadingComponent />
       : (
         <div>
