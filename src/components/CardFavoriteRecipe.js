@@ -20,31 +20,23 @@ function CardFavoriteRecipe({ recipe, index, setFavoriteRecipes }) {
           alt="imagem not found"
         />
       </Link>
-      <div
-        className="card"
-        style={ {
-          background: `url(${recipe.image})`,
-          backgroundSize: 'cover',
-        } }
-      >
-        {
-          recipe.type === 'meal' ? (
-            <h3
-              style={ { color: 'red', fontSize: 25 } }
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              { `${recipe.nationality} - ${recipe.category}` }
-            </h3>
-          ) : (
-            <h3
-              style={ { color: 'red', fontSize: 25 } }
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              { recipe.alcoholicOrNot }
-            </h3>
-          )
-        }
-      </div>
+      {
+        recipe.type === 'meal' ? (
+          <h3
+            style={ { color: 'red', fontSize: 25 } }
+            data-testid={ `${index}-horizontal-top-text` }
+          >
+            { `${recipe.nationality} - ${recipe.category}` }
+          </h3>
+        ) : (
+          <h3
+            style={ { color: 'red', fontSize: 25 } }
+            data-testid={ `${index}-horizontal-top-text` }
+          >
+            { recipe.alcoholicOrNot }
+          </h3>
+        )
+      }
       <Link to={ url }>
         <h3
           data-testid={ `${index}-horizontal-name` }
@@ -67,7 +59,6 @@ function CardFavoriteRecipe({ recipe, index, setFavoriteRecipes }) {
         />
         <ShareButtonDone recipe={ recipe } index={ index } />
       </section>
-
     </div>
   );
 }

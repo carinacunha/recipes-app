@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import CardFavoriteRecipe from '../components/CardFavoriteRecipe';
 import '../css/Favorites.css';
+import '../css/DoneRecipes.css';
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState();
@@ -70,7 +71,7 @@ function FavoriteRecipes() {
           <p>Drinks</p>
         </legend>
       </motion.section>
-      <section className="Card-Favorite">
+      <section className="cards__recipes done">
         {
           favoriteRecipes?.map((recipe, index) => (
             <CardFavoriteRecipe
