@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/CardRecipe.css';
@@ -21,7 +22,10 @@ export default function CardRecipe({ recipe, index, type }) {
 
   return (
     <Link to={ `/${type}/${recipe[findByType(type)[2]]}` }>
-      <div
+      <motion.div
+        initial={ { opacity: 0 } }
+        animate={ { opacity: 1 } }
+        exit={ { opacity: 0 } }
         className="card"
         data-testid={ `${index}-recipe-card` }
         style={ {
@@ -45,7 +49,7 @@ export default function CardRecipe({ recipe, index, type }) {
           width="200px"
           data-testid={ `${index}-card-img` }
         /> */}
-      </div>
+      </motion.div>
     </Link>
   );
 }

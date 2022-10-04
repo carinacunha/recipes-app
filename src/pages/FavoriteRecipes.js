@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import CardFavoriteRecipe from '../components/CardFavoriteRecipe';
 import '../css/Favorites.css';
@@ -29,7 +30,12 @@ function FavoriteRecipes() {
   return (
     <div>
       <Header />
-      <section className="Filters-Favorites">
+      <motion.section
+        className="Filters-Favorites"
+        initial={ { opacity: 0 } }
+        animate={ { opacity: 1 } }
+        exit={ { opacity: 0 } }
+      >
         <legend>
           <input
             className="Filter-all"
@@ -63,7 +69,7 @@ function FavoriteRecipes() {
           />
           <p>Drinks</p>
         </legend>
-      </section>
+      </motion.section>
       <section className="Card-Favorite">
         {
           favoriteRecipes?.map((recipe, index) => (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import HeaderRecipe from '../components/HeaderRecipe';
 import RecipeImage from '../components/RecipeImage';
@@ -45,7 +46,11 @@ function RecipeInProgress(props) {
 
   return (
     loading ? <LoadingComponent /> : (
-      <div>
+      <motion.div
+        initial={ { opacity: 0 } }
+        animate={ { opacity: 1 } }
+        exit={ { opacity: 0 } }
+      >
         <RecipeImage type={ type } recipe={ recipe } />
         <section className="page-recipe-container">
           <div className="ingredients-inprogress">
@@ -72,7 +77,7 @@ function RecipeInProgress(props) {
           <ShareButton history={ history } />
         </div>
         <Footer />
-      </div>
+      </motion.div>
     )
   );
 }

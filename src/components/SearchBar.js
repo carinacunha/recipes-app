@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import RecipesAppContext from '../context/RecipesAppContext';
 import fetchApi from '../services/fetchApi';
@@ -64,7 +65,20 @@ export default function SearchBar() {
   verifyRadiosMeals();
 
   return (
-    <form className="search__bar">
+    <motion.form
+      className="search__bar"
+      initial={ { y: -50,
+        transition: {
+          type: 'spring',
+          stiffness: 20,
+          restDelta: 2,
+        } } }
+      animate={ { y: 5 } }
+      exit={ { y: -50,
+        transition: {
+          duration: 0.5,
+        } } }
+    >
       <input
         name="Value"
         data-testid="search-input"
@@ -119,6 +133,6 @@ export default function SearchBar() {
       >
         Search
       </button>
-    </form>
+    </motion.form>
   );
 }

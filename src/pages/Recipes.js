@@ -1,5 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardRecipe from '../components/CardRecipe';
@@ -24,6 +26,7 @@ let URL = '';
 
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
+  const [searchLoading, setSearchLoading] = useState(false);
   const {
     currURL,
     barVisible,
@@ -85,6 +88,7 @@ export default function Recipes() {
   }, [pathname, currURL]); // eslint-disable-line
 
   const getByCategory = async ({ target: { name } }) => {
+    setSearchLoading(true);
     const URL_CATEGORY = setURLFilter(
       pathname,
       URL_FILTER_DRINKS,
@@ -94,12 +98,12 @@ export default function Recipes() {
 
     const onlyTwelveFirst2 = await fetchFilterAPI(URL_CATEGORY, currKey);
     setRecipesState({ ...recipesState, recipes: onlyTwelveFirst2 });
-    setLoading(false);
+    setSearchLoading(false);
     setToggleFilter(false);
   };
 
   const clearFilters = async () => {
-    setLoading(true);
+    setSearchLoading(true);
 
     const onlyTwelveFirst = await fetchFilterAPI(URL, currKey);
     setRecipesState({
@@ -107,7 +111,7 @@ export default function Recipes() {
       type: currKey,
     });
 
-    setLoading(false);
+    setSearchLoading(false);
     setToggleFilter(true);
   };
 
@@ -121,7 +125,11 @@ export default function Recipes() {
 
       )}
       { loading ? <LoadingComponent /> : (
-        <section>
+        <motion.section
+          initial={ { opacity: 0 } }
+          animate={ { opacity: 1 } }
+          exit={ { opacity: 0 } }
+        >
           <section className="live__scroll icons__category">
             { recipeList.list?.length > 0 ? recipeList.list.map(({ strCategory }) => (
               <label
@@ -152,17 +160,24 @@ export default function Recipes() {
               <p>All</p>
             </div>
           </section>
-          <section className="cards__recipes">
-            { recipesState.recipes?.length > 0 ? recipesState.recipes.map((recipe, i) => (
-              <CardRecipe
-                key={ i }
-                type={ recipesState.type }
-                recipe={ recipe }
-                index={ i }
-              />
-            )) : <span>Sem receitas para essa categoria</span> }
-          </section>
-        </section>
+          <motion.section
+            className="cards__recipes"
+            initial={ { opacity: 0 } }
+            animate={ { opacity: 1 } }
+            exit={ { opacity: 0 } }
+          >
+            {searchLoading ? <LoadingComponent />
+              : recipesState
+                .recipes?.length > 0 ? recipesState.recipes.map((recipe, i) => (
+                  <CardRecipe
+                    key={ i }
+                    type={ recipesState.type }
+                    recipe={ recipe }
+                    index={ i }
+                  />
+                )) : <span>Sem receitas para essa categoria</span> }
+          </motion.section>
+        </motion.section>
       ) }
       <Footer />
     </main>

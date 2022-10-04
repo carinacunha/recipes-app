@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import iconsProfileRed from '../images/iconsProfileRed.png';
 import '../css/Header.css';
@@ -20,12 +21,15 @@ function Header() {
         alt="profile"
         onClick={ () => history.push('/profile') }
       />
-      <h1
+      <motion.h1
         className="title"
         data-testid="page-title"
+        initial={ { opacity: 0 } }
+        animate={ { opacity: 1 } }
+        exit={ { opacity: 0 } }
       >
         { title }
-      </h1>
+      </motion.h1>
       <ButtonSearch />
     </section>
   );

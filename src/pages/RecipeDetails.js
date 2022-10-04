@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import RecipeImage from '../components/RecipeImage';
 import HeaderRecipe from '../components/HeaderRecipe';
@@ -37,19 +38,18 @@ function RecipeDetails(props) {
   }, []);
 
   return (
-    <section>
-      {/* <HeaderRecipe type={ type } recipe={ recipe } />
-      <IngredientsContainer recipe={ recipe } />
-      <InstructionsContainer recipe={ recipe } />
-      {type === 'meals' ? <VideoContainer recipe={ recipe } /> : null}
-      <RecomendationsCard type={ type } id={ id } />
-      <ButtonStart history={ history } id={ id } type={ type } recipe={ recipe } />
-      <FavoriteButton recipe={ recipe } id={ id } type={ type } />
-      <ShareButton history={ history } />
-      <Footer /> */}
+    <motion.section
+      initial={ { opacity: 0 } }
+      animate={ { opacity: 1 } }
+      exit={ { opacity: 0 } }
+    >
       { loading ? <LoadingComponent />
         : (
-          <div>
+          <motion.div
+            initial={ { opacity: 0 } }
+            animate={ { opacity: 1 } }
+            exit={ { opacity: 0 } }
+          >
             <RecipeImage type={ type } recipe={ recipe } />
             <section className="page-recipe-container">
               <div className="recipe-container">
@@ -73,8 +73,8 @@ function RecipeDetails(props) {
               <ShareButton history={ history } />
             </div>
             <Footer />
-          </div>)}
-    </section>
+          </motion.div>)}
+    </motion.section>
   );
 }
 
