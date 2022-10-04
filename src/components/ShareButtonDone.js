@@ -18,9 +18,10 @@ function ShareButtonDone(props) {
   };
 
   return (
-    <div>
+    <div
+      className="share-btn"
+    >
       <button
-        className="share-btn"
         type="button"
         src={ shareIcon }
         data-testid={ `${index}-horizontal-share-btn` }

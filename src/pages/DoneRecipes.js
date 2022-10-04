@@ -65,7 +65,7 @@ function DoneRecipes() {
         </legend>
 
       </section>
-      <section className="Card-Done">
+      <section className="cards__recipes done">
         {
           doneRecipes?.map((recipe, index) => (
             <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
