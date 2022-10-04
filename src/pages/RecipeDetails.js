@@ -10,6 +10,7 @@ import InstructionsContainer from '../components/InstructionsContainer';
 import RecomendationsCard from '../components/RecomendationsCard';
 import VideoContainer from '../components/VideoContainer';
 import LoadingComponent from '../components/LoadingComponent';
+import Footer from '../components/Footer';
 
 function RecipeDetails(props) {
   const [recipe, setRecipe] = useState({});
@@ -36,7 +37,7 @@ function RecipeDetails(props) {
   }, []);
 
   return (
-    <div>
+    <section>
       <HeaderRecipe type={ type } recipe={ recipe } />
       <IngredientsContainer recipe={ recipe } />
       <InstructionsContainer recipe={ recipe } />
@@ -46,28 +47,33 @@ function RecipeDetails(props) {
       <FavoriteButton recipe={ recipe } id={ id } type={ type } />
       <ShareButton history={ history } />
       <Footer />
-    </div>
-    loading ? <LoadingComponent />
-      : (
-        <div>
-          <RecipeImage type={ type } recipe={ recipe } />
-          <section className="page-recipe-container">
-            <div className="recipe-container">
-              <HeaderRecipe type={ type } recipe={ recipe } setShow={ setShow } />
-              {show === 'ingredients'
-                ? <IngredientsContainer recipe={ recipe } />
-                : <InstructionsContainer recipe={ recipe } />}
+      { loading ? <LoadingComponent />
+        : (
+          <div>
+            <RecipeImage type={ type } recipe={ recipe } />
+            <section className="page-recipe-container">
+              <div className="recipe-container">
+                <HeaderRecipe type={ type } recipe={ recipe } setShow={ setShow } />
+                {show === 'ingredients'
+                  ? <IngredientsContainer recipe={ recipe } />
+                  : <InstructionsContainer recipe={ recipe } />}
+              </div>
+              {type === 'meals' ? <VideoContainer recipe={ recipe } /> : null}
+              <h3 className="recomentation-text">Recommentations</h3>
+            </section>
+            <RecomendationsCard type={ type } id={ id } />
+            <div className="recipe-footer">
+              <ButtonStart
+                history={ history }
+                id={ id }
+                type={ type }
+                recipe={ recipe }
+              />
+              <FavoriteButton recipe={ recipe } id={ id } type={ type } />
+              <ShareButton history={ history } />
             </div>
-            {type === 'meals' ? <VideoContainer recipe={ recipe } /> : null}
-            <h3 className="recomentation-text">Recommentations</h3>
-          </section>
-          <RecomendationsCard type={ type } id={ id } />
-          <div className="recipe-footer">
-            <ButtonStart history={ history } id={ id } type={ type } recipe={ recipe } />
-            <FavoriteButton recipe={ recipe } id={ id } type={ type } />
-            <ShareButton history={ history } />
-          </div>
-        </div>)
+          </div>)}
+    </section>
   );
 }
 
