@@ -10,7 +10,6 @@ function Profile(props) {
   return (
     <div>
       <Header />
-      <Footer />
       <ProfileContainer
         history={ history }
       />

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import '../css/Profile.css';
+import profile from '../images/profile.png';
 
 function ProfileContainer(props) {
   const [email, setEmail] = useState('');
@@ -29,29 +31,35 @@ function ProfileContainer(props) {
   };
 
   return (
-    <div>
-      <p data-testid="profile-email">{email}</p>
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ handleDoneRecipes }
-      >
-        Done Recipes
-      </button>
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ handleFavoriteRecipes }
-      >
-        Favorite Recipes
-      </button>
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ handleLogout }
-      >
-        Logout
-      </button>
+    <div className="profile-container">
+      <img src={ profile } alt="profile" className="profile-image" />
+      <p data-testid="profile-email" className="profile-email">{email}</p>
+      <div className="profile-buttons">
+        <button
+          type="button"
+          data-testid="profile-done-btn"
+          className="profile-button"
+          onClick={ handleDoneRecipes }
+        >
+          Done Recipes
+        </button>
+        <button
+          type="button"
+          data-testid="profile-favorite-btn"
+          className="profile-button"
+          onClick={ handleFavoriteRecipes }
+        >
+          Favorite Recipes
+        </button>
+        <button
+          type="button"
+          data-testid="profile-logout-btn"
+          className="profile-button"
+          onClick={ handleLogout }
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
