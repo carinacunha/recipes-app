@@ -145,6 +145,7 @@ export default function Recipes() {
           <section className="live__scroll icons__category">
             { recipeList.list?.length > 0 ? recipeList.list.map(({ strCategory }) => (
               <label
+                name={ strCategory }
                 key={ strCategory }
                 htmlFor={ strCategory }
                 className="live__scroll--box icon__category"

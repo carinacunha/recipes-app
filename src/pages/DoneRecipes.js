@@ -69,7 +69,6 @@ function DoneRecipes() {
           />
           <p>All</p>
         </legend>
-
       </motion.section>
       <motion.section
         className="Card-Done"
@@ -80,7 +79,6 @@ function DoneRecipes() {
         {
           doneRecipes?.map((recipe, index) => (
             <CardDoneRecipe recipe={ recipe } key={ index } index={ index } />))
-
         }
       </motion.section>
     </div>

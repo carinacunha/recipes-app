@@ -21,10 +21,11 @@ function CardFavoriteRecipe({ recipe, index, setFavoriteRecipes }) {
         />
       </Link>
       <div
-        styles={ { backgroundImage: `url(${recipe.image})`,
-          background: 'linear-gradient(360deg, #0C0C0C 0%, rgba(12, 12, 12, 0) 40%)',
+        className="card"
+        style={ {
+          background: `url(${recipe.image})`,
+          backgroundSize: 'cover',
         } }
-        className="textContent"
       >
         {
           recipe.type === 'meal' ? (
