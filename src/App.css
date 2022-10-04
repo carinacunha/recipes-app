@@ -7,6 +7,7 @@
 body {
   color: rgb(12, 12, 12);
   font-family: Quicksand , sans-serif;
+  margin-bottom: 80px;
 }
 
 .meals {
@@ -79,9 +80,7 @@ body {
 }
 
 .live__scroll {
-  background-color: white;
   border-radius: 5px;
-  margin-bottom: 60px;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 10px;

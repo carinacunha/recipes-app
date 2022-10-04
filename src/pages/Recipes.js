@@ -24,10 +24,9 @@ let URL = '';
 
 export default function Recipes() {
   const [loading, setLoading] = useState(true);
-  const { currURL,
+  const {
+    currURL,
     barVisible,
-    searchInputValue,
-    handleInputBar,
   } = useContext(RecipesAppContext);
   const [recipesState, setRecipesState] = useState({
     recipes: [],
@@ -117,17 +116,9 @@ export default function Recipes() {
       <Header />
       {barVisible
       && (
-        <div>
-          <input
-            name="Value"
-            data-testid="search-input"
-            type="text"
-            value={ searchInputValue.Value }
-            onChange={ handleInputBar }
-            placeholder="digite a receita"
-          />
-          <SearchBar />
-        </div>
+
+        <SearchBar />
+
       )}
       { loading ? <LoadingComponent /> : (
         <section>
