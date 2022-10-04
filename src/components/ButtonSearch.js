@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipesAppContext from '../context/RecipesAppContext';
 import iconsPesquisarRed from '../images/iconsPesquisarRed.png';
 
 function ButtonSearch() {
+  const history = useHistory();
+  const { location: { pathname } } = history;
   const {
     barVisible,
     setBarVisible,
   } = useContext(RecipesAppContext);
+  const isDisabled = pathname === '/profile'
+  || pathname === '/done-recipes'
+  || pathname === '/favorite-recipes';
 
   return (
     <input
@@ -16,6 +22,7 @@ function ButtonSearch() {
       alt="search icon"
       type="image"
       onClick={ () => setBarVisible(!barVisible) }
+      disabled={ isDisabled }
     />
   );
 }
