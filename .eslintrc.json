@@ -3,6 +3,14 @@
   "overrides": [
     {
       "files": ["src/tests/**/*.js"],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          },
+          "caseSensitive": false
+        }
+      },
       "rules": {
         "max-len": [
           "error",

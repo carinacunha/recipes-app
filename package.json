@@ -73,14 +73,5 @@
       "src/hooks",
       "src/tests"
     ]
-  },
-  
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      },
-      "caseSensitive": false
-    }
   }
 }
