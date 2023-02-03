@@ -5,9 +5,9 @@ In this project, a responsive recipe app was developed, using two important Reac
 
 ## Guidelines to runnig API ##
 1. Clone the repository 
-  * https://github.com/carinacunha/project-recipes-app
-  * Navigate to the root of the repository
-2. Install the dependencies: ```npm install```
-3. Start the app: ```npm start```
+https://github.com/carinacunha/project-recipes-app
+2. Navigate to the root of the repository
+3. Install the dependencies: ```npm install```
+4. Start the app: ```npm start```
 
 **:point_right: This project was developed during the Full Stack Web Development course at Trybe.**
