@@ -10,4 +10,4 @@ https://github.com/carinacunha/project-recipes-app
 3. Install the dependencies: ```npm install```
 4. Start the app: ```npm start```
 
-**:point_right: This project was developed during the Full Stack Web Development course at Trybe.**
+**✨ This project was developed during the Full Stack Web Development course at Trybe.**
