@@ -9,4 +9,4 @@ In this project, a responsive recipe app was developed, using two important Reac
 3. Install the dependencies: ```npm install```
 4. Start the app: ```npm start```
 
-** This project was developed during the Full Stack Web Development course at Trybe.**
+**This project was developed during the Full Stack Web Development course at Trybe.**
