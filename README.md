@@ -1,6 +1,8 @@
 # Recipes #
 ![alt recipes](screen.png "screen app")
 
+## About ##
+
 In this project, a responsive recipe app was developed, using two important React features: Hooks and Context API. In this app it is possible to log in with user data, view, search, filter, favorite and follow the progress of preparing food and drink recipes! The databases used come from 2 different APIs, one for food and one for drinks. About 90% of the application has been tested using Jest library.
 
 ## Guidelines to runnig API ##
